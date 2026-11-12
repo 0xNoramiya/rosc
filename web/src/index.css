@@ -1,0 +1,1482 @@
+/* The page is printed. Three inks on paper (the darkest carries every key
+   line and all the type), a thermal strip coming off a recorder, stickers for
+   controls, and one clay patient. Every colour, offset, dot and angle below
+   comes from look.json through styleOf(); nothing here picks a colour itself.
+
+   Rules this file keeps: nothing eases (every animation is stepped), only the
+   patient moves, tints are dots and never soft gradients, colour plates sit
+   off their key lines, and it is always daytime. */
+:root {
+  color-scheme: light;
+  --display: 'Lilita One', 'Fredoka', system-ui, sans-serif;
+  --text: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --key: 2.5px;
+  --cb-font: var(--thermal);
+  --cb-surface: transparent;
+  --cb-ink: var(--burn);
+  --cb-ink2: var(--burn);
+  --cb-muted: var(--muted);
+  --cb-grid: var(--rule);
+  --cb-axis: var(--axis);
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--sheet);
+  color: var(--ink);
+  font: 16px/1.5 var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+/* Uneven ink: the same mottle for a given seed, over everything printed. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  background: var(--grain);
+  opacity: var(--mottle);
+  mix-blend-mode: multiply;
+}
+h1,
+h2,
+h3,
+p,
+dl,
+dd,
+ol,
+figure {
+  margin: 0;
+}
+ol {
+  padding: 0;
+  list-style: none;
+}
+a {
+  color: inherit;
+}
+code,
+kbd {
+  font: 0.88em var(--thermal);
+}
+kbd {
+  border: 1.5px solid currentColor;
+  border-radius: 5px;
+  padding: 0 5px;
+  font-size: 0.7em;
+}
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.scroll {
+  overflow-x: auto;
+}
+
+/* The sheet has an unprinted margin: a stencil cannot reach the edge. */
+.ward {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 26px max(18px, env(safe-area-inset-right, 0px)) 60px max(18px, env(safe-area-inset-left, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+/* ── Stickers: every control is a die-cut shape with a white border and a
+   short hard shadow. The colour plate sits a little off the key line. ── */
+button,
+.softkey,
+.sticker {
+  position: relative;
+  isolation: isolate;
+  font: 600 16px/1.2 var(--text);
+  color: var(--ink);
+  background: var(--white);
+  border: var(--key) solid var(--ink);
+  border-radius: 14px;
+  padding: 9px 16px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 0 0 var(--border) var(--white);
+  filter: drop-shadow(var(--shadow) var(--shadow) 0 color-mix(in oklch, var(--burn) 30%, transparent)) drop-shadow(0 0 0.6px color-mix(in oklch, var(--burn) 55%, transparent));
+  rotate: var(--tilt-0);
+  touch-action: manipulation;
+}
+button::before,
+.softkey::before,
+.sticker::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 10px;
+  background: var(--fill, none);
+  translate: var(--fx, 0) var(--fy, 0);
+}
+.sticker {
+  cursor: default;
+}
+/* Pressed flat against the page. */
+button:active:not(:disabled) {
+  translate: var(--shadow) var(--shadow);
+  filter: drop-shadow(0 0 0.6px color-mix(in oklch, var(--burn) 55%, transparent));
+}
+.is-gold {
+  --fill: var(--gold);
+  --fx: var(--gx);
+  --fy: var(--gy);
+  color: var(--on-gold);
+}
+.is-pink {
+  --fill: var(--pink);
+  --fx: var(--px);
+  --fy: var(--py);
+  color: var(--on-pink);
+}
+/* A tint is a band of dots behind the heading. Small type never sits on dots. */
+.is-pink-tint {
+  --fill: linear-gradient(var(--white), var(--white)) 0 100% / 100% calc(100% - var(--band, 44px)) no-repeat, var(--dots-pink);
+  --fx: var(--px);
+  --fy: var(--py);
+}
+.is-gold-tint {
+  --fill: linear-gradient(var(--white), var(--white)) 0 100% / 100% calc(100% - var(--band, 44px)) no-repeat, var(--dots-gold);
+  --fx: var(--gx);
+  --fy: var(--gy);
+}
+button.primary,
+.band-toggle[aria-pressed='true'] {
+  --fill: var(--gold);
+  --fx: var(--gx);
+  --fy: var(--gy);
+  color: var(--on-gold);
+}
+/* A control that cannot be pressed has no colour plate: soft ink on white,
+   so its label still reads. Sits after the fills so it wins over them. */
+button:disabled {
+  cursor: not-allowed;
+  --fill: none;
+  color: var(--ink-soft);
+  border-style: dashed;
+}
+select,
+input {
+  font: 500 15px var(--thermal);
+  color: var(--burn);
+  background: var(--white);
+  border: 1.5px solid var(--burn);
+  border-radius: 4px;
+  padding: 6px 9px;
+  min-width: 0;
+}
+
+/* ── Title card ── */
+.plate {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+}
+.plate h1 {
+  font: 400 clamp(40px, 7.5vw, 68px) / 0.95 var(--display);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  /* The pink plate, printed a little off the key. */
+  text-shadow: calc(var(--px) * 2.4) calc(var(--py) * 2.4 + 3px) 0 var(--pink);
+}
+.ticker {
+  text-shadow: calc(var(--gx) * 2.4) calc(var(--gy) * 2.4 + 3px) 0 var(--gold);
+}
+.tagline {
+  flex: 1 1 320px;
+  max-width: 54ch;
+  font-size: 17.5px;
+}
+.plate-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+.coin-pick {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font: 500 14px var(--thermal);
+  color: var(--burn);
+}
+.band-toggle {
+  rotate: var(--tilt-1);
+}
+
+/* ── Status strip ── */
+.status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+  font: 500 13.5px var(--thermal);
+  color: var(--burn);
+}
+.status-strip strong {
+  font: 400 22px/1 var(--display);
+  color: var(--ink);
+}
+.strip-meta {
+  overflow-wrap: anywhere;
+}
+/* The lamp's shape changes with the state, not only its colour. */
+.lamp {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: var(--key) solid var(--ink);
+  background: var(--white);
+}
+.lamp.is-alive {
+  background: var(--gold);
+}
+.lamp.is-arrest {
+  background: var(--ink);
+  border-radius: 3px;
+  rotate: 45deg;
+}
+.lamp.is-morgue,
+.lamp.is-deceased {
+  border-radius: 3px;
+  background: var(--dots-ink);
+}
+.room-note {
+  font: 500 15px var(--thermal);
+  color: var(--burn);
+}
+
+/* ── The ward: a printed room. Wallpaper in the two light inks, a floor
+   made of dots, and a key line round it. ── */
+.room {
+  position: relative;
+  display: grid;
+  grid-template-columns: 124px minmax(0, 0.92fr) minmax(0, 1.25fr);
+  gap: 14px 20px;
+  align-items: end;
+  padding: 22px 20px 24px;
+  border: var(--key) solid var(--ink);
+  border-radius: 6px;
+  /* The rescuer's arms reach in from above; the room's edge cuts them off. */
+  overflow: clip;
+  background:
+    linear-gradient(var(--ink), var(--ink)) 0 calc(100% - 64px) / 100% var(--key) no-repeat,
+    var(--dots-gold) 0 100% / auto 64px repeat-x,
+    var(--wall) 0 0 / 480px 300px,
+    var(--paper);
+  background-blend-mode: normal, multiply, multiply, normal;
+  overflow: hidden;
+  min-height: 320px;
+}
+/* Code blue: the dark ink is screened over the whole room. No light spins. */
+.room.is-arrest::before,
+.room.is-morgue::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--dots-ink);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.room > * {
+  position: relative;
+}
+.room-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.room figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.room figcaption {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  font: 500 12px var(--thermal);
+  color: var(--burn);
+  background: var(--white);
+  border: 1.5px solid var(--burn);
+  padding: 3px 7px 4px;
+  rotate: var(--tilt-2);
+}
+.room figcaption strong {
+  font-size: 19px;
+}
+.lives figcaption {
+  rotate: var(--tilt-3);
+}
+.cart svg {
+  width: 88px;
+}
+.lives svg {
+  width: 108px;
+}
+
+/* ── Things drawn in ink: one key line, flat fills that sit off it. ── */
+.patient,
+.cart svg,
+.lives svg,
+.flower {
+  overflow: visible;
+}
+.patient {
+  width: 100%;
+  max-width: 400px;
+  justify-self: center;
+}
+.patient *,
+.cart svg *,
+.lives svg *,
+.flower * {
+  stroke: var(--ink);
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.p-line,
+.p-wire,
+.c-tube,
+.l-crack,
+.c-outline {
+  fill: none;
+}
+.p-wood {
+  fill: var(--gold);
+}
+.p-sheet,
+.p-pillow,
+.p-white,
+.p-band,
+.p-glove,
+.p-box,
+.c-bag,
+.c-chamber {
+  fill: var(--white);
+}
+.p-rim {
+  fill: var(--pink-gold);
+}
+.p-face,
+.p-lid {
+  fill: var(--gold);
+}
+.p-lid {
+  stroke: none;
+}
+.p-shine {
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 7;
+}
+.p-emblem {
+  fill: none;
+  stroke: var(--pink-gold);
+}
+.p-cheek {
+  fill: var(--pink);
+  stroke: none;
+}
+.p-pupil {
+  fill: var(--ink);
+}
+.p-blanket,
+.l-whole path,
+.f-petal {
+  fill: var(--pink);
+}
+.p-plaster {
+  fill: var(--white);
+  stroke-width: 2.5;
+}
+.p-pad {
+  fill: var(--pink);
+  stroke: none;
+}
+.p-blink,
+.f-heart {
+  fill: var(--gold);
+}
+.c-fluid,
+.c-drop {
+  fill: var(--pink);
+  stroke: none;
+}
+.l-broken path {
+  fill: none;
+  stroke-dasharray: 5 5;
+}
+.f-stem {
+  fill: var(--ink-gold);
+}
+.p-zzz,
+.p-tag text {
+  font: 400 22px var(--display);
+  fill: var(--ink);
+  stroke: none;
+}
+.p-tag rect {
+  fill: var(--white);
+}
+.p-tag text {
+  font: 600 15px var(--thermal);
+  fill: var(--burn);
+}
+.p-puff circle {
+  fill: var(--white);
+}
+
+/* What shows in which mood. The face changes by swapping parts. */
+.p-pacer,
+.p-hands,
+.p-eyes-shut,
+.p-mouth,
+.p-shroud,
+.p-tag,
+.p-zzz,
+.p-puff {
+  display: none;
+}
+.is-paced .p-pacer,
+.is-well .m-well,
+.is-paced .m-well,
+.is-drowsy .m-drowsy,
+.is-drowsy .p-zzz,
+.is-flat .m-flat,
+.is-vf .m-vf,
+.is-flat .p-hands,
+.is-vf .p-hands,
+.is-flat .p-eyes-shut,
+.is-vf .p-eyes-shut,
+.is-flat .p-puff,
+.is-vf .p-puff,
+.is-morgue .p-shroud,
+.is-morgue .p-tag {
+  display: inline;
+}
+.is-flat .p-eyes-open,
+.is-vf .p-eyes-open,
+.is-morgue .p-arms {
+  display: none;
+}
+.p-squash,
+.p-bob,
+.p-coin,
+.clay-coin,
+.clay-hands {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+/* ── The clay patient: photographed parts, swapped, never morphed. Sizes
+   and positions are set inline from the sprite manifest. ── */
+.clay {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  justify-self: center;
+}
+.clay img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.clay-bed {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+/* Everything on a table has a shadow where it touches. */
+.clay-shadow {
+  position: absolute;
+  height: 7%;
+  border-radius: 50%;
+  background: color-mix(in oklch, var(--burn) 34%, transparent);
+  filter: blur(5px);
+  translate: -50% -40%;
+}
+.clay-figure {
+  position: absolute;
+  inset: 0;
+}
+/* Handled clay never holds quite still. */
+.clay-coin,
+.clay-hands {
+  filter: url(#boil);
+}
+.clay-coin {
+  position: absolute;
+  /* The feet: where the coin touches the bed in every picture. */
+  transform-origin: 50% 89%;
+}
+.clay-coin img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+/* Every pose stays loaded; one shows. */
+.clay-coin img,
+.clay-hands {
+  visibility: hidden;
+}
+.clay-coin img.is-on,
+.clay-hands.is-on {
+  visibility: visible;
+}
+.clay-puff {
+  position: absolute;
+  left: 63%;
+  top: 44%;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+.clay-puff i {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--white);
+  filter: drop-shadow(1px 1.5px 0 color-mix(in oklch, var(--burn) 30%, transparent));
+}
+.clay-puff i:nth-child(2) {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 8px;
+}
+.clay-pacer {
+  position: absolute;
+  right: 0;
+  top: 34%;
+  font: 500 12px var(--thermal);
+  color: var(--burn);
+  background: var(--white);
+  border: 1.5px solid var(--burn);
+  padding: 2px 7px 3px;
+  rotate: var(--tilt-4);
+}
+.clay-plasters {
+  position: absolute;
+  left: 4%;
+  bottom: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.clay-plasters i {
+  width: 26px;
+  height: 11px;
+  border-radius: 6px;
+  background: var(--white);
+  border: 1.5px solid var(--ink);
+  background-image: linear-gradient(var(--pink), var(--pink));
+  background-size: 8px 7px;
+  background-repeat: no-repeat;
+  background-position: center;
+  rotate: -8deg;
+}
+.clay-plasters i:nth-child(even) {
+  rotate: 11deg;
+}
+
+/* ── Motion: stepped, on the look's pose rate. Only the patient moves. ── */
+@media (prefers-reduced-motion: no-preference) {
+  .p-bob,
+  .clay-coin.is-bob {
+    animation: bob calc(var(--step) * 5) step-end;
+  }
+  .p-squash,
+  .clay-coin.is-squash {
+    animation: squash calc(var(--step) * 6) step-end;
+  }
+  .clay-hands.is-squash,
+  .is-flat .p-hands,
+  .is-vf .p-hands {
+    animation: push calc(var(--step) * 6) step-end;
+  }
+  .is-vf .p-coin,
+  .clay-coin.is-shiver {
+    animation: shiver calc(var(--step) * 2) step-end infinite;
+  }
+  .is-taking .p-coin,
+  .clay-coin.is-take {
+    animation: take calc(var(--step) * 8) step-end;
+  }
+  .p-puff,
+  .clay-puff {
+    animation: puff calc(var(--step) * 6) step-end both;
+  }
+  .p-blink {
+    animation: blink calc(var(--step) * 12) step-end infinite;
+  }
+  .c-drop {
+    animation: drip calc(var(--step) * 16) step-end infinite;
+  }
+  .p-zzz {
+    animation: doze calc(var(--step) * 24) step-end infinite;
+  }
+  .p-zzz-2 {
+    animation-delay: calc(var(--step) * 6);
+  }
+  .confetti i {
+    animation: fall calc(var(--step) * 30) steps(15) both;
+  }
+  .iris.is-in {
+    animation: iris-in calc(var(--step) * 10) steps(8) both;
+  }
+  .iris.is-out {
+    animation: iris-out calc(var(--step) * 30) steps(24) both;
+  }
+}
+/* A beat: down, up past rest, settle. Width and height trade, so the coin keeps its volume. */
+@keyframes bob {
+  0% {
+    transform: scale(1.04, 0.96);
+  }
+  20% {
+    transform: translateY(calc(var(--bounce) * -1)) scale(0.97, 1.03);
+  }
+  60% {
+    transform: translateY(calc(var(--bounce) * -0.35));
+  }
+  80% {
+    transform: none;
+  }
+}
+/* A press: squashed at once and held for two poses, one overshoot, settled by the fifth. */
+@keyframes squash {
+  0% {
+    transform: scale(var(--squash-x), var(--squash-y));
+  }
+  34% {
+    transform: scale(0.97, 1.035);
+  }
+  50% {
+    transform: scale(1.012, 0.988);
+  }
+  67% {
+    transform: none;
+  }
+}
+@keyframes push {
+  0% {
+    transform: translateY(7%);
+  }
+  34% {
+    transform: translateY(-2%);
+  }
+  50% {
+    transform: none;
+  }
+}
+@keyframes shiver {
+  50% {
+    transform: translate(2px, -1px) rotate(1.4deg);
+  }
+}
+@keyframes take {
+  0% {
+    transform: scale(1.12, 0.84);
+  }
+  13% {
+    transform: translateY(-14%) scale(0.86, 1.2);
+  }
+  38% {
+    transform: translateY(-5%) scale(1.04, 0.96);
+  }
+  63% {
+    transform: none;
+  }
+}
+@keyframes puff {
+  0% {
+    opacity: 1;
+    transform: translate(-8px, 6px) scale(0.6);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translate(8px, -8px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(18px, -18px) scale(1.2);
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0.15;
+  }
+}
+@keyframes drip {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(7px);
+  }
+  50% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+@keyframes doze {
+  50% {
+    transform: translate(4px, -6px);
+    opacity: 0.35;
+  }
+}
+@keyframes fall {
+  to {
+    transform: translateY(420px) rotate(540deg);
+    opacity: 0;
+  }
+}
+@keyframes iris-in {
+  from {
+    width: 0;
+    height: 0;
+  }
+  to {
+    width: 260%;
+    height: 260%;
+  }
+}
+@keyframes iris-out {
+  0% {
+    width: 260%;
+    height: 260%;
+  }
+  35%,
+  60% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 260%;
+    height: 260%;
+  }
+}
+/* The lens: a round hole in a field of the dark ink. */
+.iris {
+  position: absolute;
+  left: 38%;
+  top: 55%;
+  width: 260%;
+  height: 0;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3000px var(--ink);
+  pointer-events: none;
+}
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.confetti i {
+  position: absolute;
+  top: -14px;
+  width: 9px;
+  height: 14px;
+  background: var(--pink);
+}
+.confetti .hue-1 {
+  background: var(--gold);
+}
+.confetti .hue-2 {
+  background: var(--ink);
+}
+
+/* ── The strip: chart paper off a recorder. One burned colour. ── */
+.scope {
+  background: var(--strip);
+  color: var(--burn);
+  font-family: var(--thermal);
+  border: 1px solid color-mix(in oklch, var(--burn) 35%, transparent);
+  padding: 9px 12px 10px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  filter: drop-shadow(var(--shadow) var(--shadow) 0 color-mix(in oklch, var(--burn) 28%, transparent));
+  rotate: calc(var(--tilt-4) * 0.35);
+  /* Feed holes down the edge. */
+  background-image: radial-gradient(circle, var(--sheet) 3.2px, color-mix(in oklch, var(--burn) 40%, transparent) 3.6px, transparent 4.2px);
+  background-size: 14px 18px;
+  background-repeat: repeat-y;
+  background-position: 4px 6px;
+}
+.trace-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+.lead-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+.rhythm {
+  font-size: 23px;
+  font-weight: 700;
+}
+/* A stamp, in the dark ink, slapped on at an angle. */
+.stamp {
+  margin-left: auto;
+  font: 400 19px/1 var(--display);
+  color: var(--ink);
+  border: var(--key) solid var(--ink);
+  border-radius: 6px;
+  padding: 4px 9px 3px;
+  rotate: -5deg;
+  background: var(--dots-ink);
+}
+.ecg {
+  width: 100%;
+  height: 170px;
+  display: block;
+  border: 1px solid var(--grid-heavy);
+}
+.vitals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1.5px solid var(--burn);
+}
+.vital {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 4px 8px 6px;
+  border-left: 1.5px solid var(--burn);
+}
+.vital:first-child {
+  border-left: 0;
+}
+.v-name {
+  font-size: 12px;
+  font-weight: 600;
+}
+.v-num {
+  font: 700 25px/1.05 var(--thermal);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.v-hr .v-num {
+  font-size: 34px;
+}
+.v-unit {
+  font-size: 11.5px;
+}
+.trace-foot {
+  font-size: 11.5px;
+}
+
+/* ── Tabs ── */
+.softkeys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 16px;
+  padding: 2px 4px;
+}
+.softkey {
+  flex: 1 1 110px;
+  text-align: center;
+  font: 400 19px/1.1 var(--display);
+  letter-spacing: 0.02em;
+  padding: 11px 10px 9px;
+}
+.softkey:nth-child(1) {
+  rotate: var(--tilt-1);
+}
+.softkey:nth-child(2) {
+  rotate: var(--tilt-2);
+}
+.softkey:nth-child(3) {
+  rotate: var(--tilt-3);
+}
+.softkey:nth-child(4) {
+  rotate: var(--tilt-4);
+}
+.softkey:nth-child(5) {
+  rotate: var(--tilt-5);
+}
+.softkey[aria-current='page'] {
+  --fill: var(--ink);
+  color: var(--white);
+}
+
+/* ── Paperwork: chart paper, ruled, set by the same thermal head. ── */
+.panel,
+.bedside,
+.cpr-card {
+  position: relative;
+  background: var(--white);
+  color: var(--burn);
+  font-family: var(--thermal);
+  border: 1.5px solid var(--burn);
+  padding: 20px 22px 34px 44px;
+  min-width: 0;
+  filter: drop-shadow(var(--shadow) var(--shadow) 0 color-mix(in oklch, var(--burn) 22%, transparent));
+  /* Two punched holes, and a margin rule in the pink ink. */
+  background-image:
+    radial-gradient(circle at 16px 42px, var(--sheet) 6px, color-mix(in oklch, var(--burn) 45%, transparent) 6.6px, transparent 7.2px),
+    radial-gradient(circle at 16px calc(100% - 42px), var(--sheet) 6px, color-mix(in oklch, var(--burn) 45%, transparent) 6.6px, transparent 7.2px),
+    linear-gradient(var(--pink), var(--pink));
+  background-size: 100% 100%, 100% 100%, 1.5px 100%;
+  background-position: 0 0, 0 0, 32px 0;
+  background-repeat: no-repeat;
+}
+.panel:empty {
+  display: none;
+}
+/* The form number every chart carries at its foot. */
+.panel::after,
+.bedside::after,
+.cpr-card::after {
+  content: 'FORM CB-30:2   REV 1   PAGE 1 OF 1';
+  position: absolute;
+  right: 14px;
+  bottom: 8px;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  white-space: pre;
+  opacity: 0.7;
+}
+.bedside::after {
+  content: 'FORM CB-ADM   REV 1';
+}
+.cpr-card::after {
+  content: 'NOT A TOY. THIS CARD IS REAL.';
+}
+.panel h2,
+.below h2 {
+  font: 400 26px/1.15 var(--display);
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+.panel h3,
+.below h3 {
+  font: 700 16px/1.3 var(--thermal);
+}
+.panel section,
+.chart,
+.sim,
+.params,
+.code,
+.bedside,
+.cpr-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.chart,
+.sim {
+  gap: 28px;
+}
+.notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px 26px;
+  padding: 6px 4px;
+}
+.notes .note {
+  grid-column: 1 / -1;
+}
+.note-card {
+  --band: 58px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 16px 14px;
+  font-family: var(--text);
+  color: var(--ink);
+  cursor: default;
+}
+.note-card:nth-child(1) {
+  rotate: var(--tilt-5);
+}
+.note-card:nth-child(2) {
+  rotate: var(--tilt-6);
+}
+.note-card:nth-child(3) {
+  rotate: var(--tilt-7);
+}
+.note-card h2 {
+  font-size: 20px;
+  line-height: 1.05;
+  color: inherit;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+}
+.note {
+  font-size: 13.5px;
+  max-width: 78ch;
+}
+.note.is-alarm {
+  font-weight: 700;
+}
+.note.is-alarm::before {
+  content: '! ';
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13.5px;
+  font-variant-numeric: tabular-nums;
+}
+th,
+td {
+  text-align: left;
+  padding: 6px 14px 6px 0;
+  border-bottom: 1px solid color-mix(in oklch, var(--burn) 28%, transparent);
+  vertical-align: top;
+}
+th {
+  font-weight: 700;
+  font-size: 12.5px;
+  white-space: nowrap;
+  border-bottom: 1.5px solid var(--burn);
+}
+.num {
+  text-align: right;
+  padding-right: 0;
+}
+.sheet {
+  border: 1.5px dashed var(--burn);
+  padding: 12px 14px;
+}
+.sheet-facts,
+.headstone dl,
+.cpr-card dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px 18px;
+}
+dt {
+  font-size: 12px;
+  font-weight: 700;
+}
+.sim-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 14px;
+}
+figure svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.sim figure svg {
+  width: 100%;
+}
+figcaption {
+  font-size: 12.5px;
+}
+.sim-wide figure {
+  max-width: 760px;
+}
+.sim-wide figure svg {
+  min-width: 540px;
+}
+
+/* ── Code mode ── */
+.aed {
+  font: 400 clamp(24px, 3.6vw, 34px) / 1.1 var(--display);
+  color: var(--ink);
+  min-height: 2.2em;
+  text-wrap: balance;
+}
+.code-numbers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0;
+}
+.code-numbers .vital {
+  border: 1.5px solid var(--burn);
+  margin: 0 -1.5px -1.5px 0;
+}
+.perfusion {
+  grid-column: 1 / -1;
+  position: relative;
+  height: 40px;
+  margin-top: 12px;
+  border: var(--key) solid var(--ink);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--white);
+}
+.perfusion-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--pink);
+  border-right: var(--key) solid var(--ink);
+  translate: var(--px) var(--py);
+}
+.perfusion-text {
+  position: relative;
+  display: block;
+  padding: 8px 12px;
+  font: 600 15px var(--text);
+  color: var(--on-pink);
+}
+.pads {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 18px 20px;
+  align-items: stretch;
+  padding: 6px 4px;
+}
+.pad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 12px;
+}
+.pad:nth-child(3) {
+  rotate: var(--tilt-3);
+}
+.pad:nth-child(4) {
+  rotate: var(--tilt-4);
+}
+.pad:nth-child(5) {
+  rotate: var(--tilt-5);
+}
+.pad:nth-child(6) {
+  rotate: var(--tilt-6);
+}
+.pad-compress {
+  grid-column: span 2;
+  flex-direction: column;
+  gap: 0;
+  padding: 14px 12px 12px;
+  border-radius: 26px;
+  --fill: var(--pink);
+  --fx: var(--px);
+  --fy: var(--py);
+  color: var(--on-pink);
+  rotate: var(--tilt-2);
+}
+.pad-compress::before {
+  border-radius: 22px;
+}
+.pad-big {
+  font: 400 44px/1 var(--display);
+}
+.pad-claim {
+  --fill: var(--gold);
+  --fx: var(--gx);
+  --fy: var(--gy);
+  color: var(--on-gold);
+  align-self: flex-start;
+}
+.metronome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12.5px;
+}
+.metronome-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: var(--key) solid var(--ink);
+  background: var(--white);
+}
+/* Tick and tock differ in shape, so the beat shows without any motion. */
+.is-tick .metronome-dot {
+  background: var(--pink);
+}
+.code-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-size: 13.5px;
+}
+.code-options input {
+  accent-color: var(--ink);
+  padding: 0;
+}
+.presses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 18px;
+}
+/* Counted is a solid square, missed a struck-through outline, in flight a dot. */
+.press {
+  width: 15px;
+  height: 15px;
+}
+.press.m-breathe {
+  border-radius: 50%;
+}
+.press.is-counted,
+.key.is-counted {
+  background: var(--burn);
+}
+.press.m-breathe.is-counted {
+  background: var(--ink);
+}
+.press.is-missed,
+.key.is-missed {
+  border: 2px solid var(--burn);
+  background: linear-gradient(to top right, transparent 44%, var(--burn) 45% 55%, transparent 56%);
+}
+.press.is-pending,
+.key.is-pending {
+  background: radial-gradient(var(--burn) 28%, transparent 32%);
+}
+.tally-text {
+  font-size: 13px;
+  margin-top: 6px;
+}
+.key {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  vertical-align: -1px;
+  margin-left: 10px;
+}
+.tally-text .key:first-child {
+  margin-left: 0;
+}
+
+/* ── Headstone ── */
+.headstone {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px 18px;
+  padding: 6px 0 0;
+}
+.stone {
+  width: min(100%, 400px);
+  background: var(--dots-ink), var(--white);
+  color: var(--ink);
+  border: var(--key) solid var(--ink);
+  border-radius: 200px 200px 6px 6px;
+  padding: 56px 30px 26px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--thermal);
+}
+.stone > * {
+  background: var(--white);
+  align-self: center;
+  padding: 0 6px;
+}
+.stone-name {
+  font: 400 44px/1 var(--display);
+}
+.stone-ticker {
+  font: 400 22px/1 var(--display);
+}
+.stone dl {
+  align-self: stretch;
+  text-align: left;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1.5px solid var(--ink);
+}
+.stone-foot {
+  font-style: italic;
+  margin-top: 8px;
+}
+.flower {
+  width: 54px;
+}
+/* The clay headstone: the name is lettered on the stone, and the rest is a
+   slip of paper beside it. */
+.clay-stone {
+  position: relative;
+  width: min(100%, 330px);
+  container-type: inline-size;
+}
+.clay-stone img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.clay-stone-face {
+  position: absolute;
+  left: 34.5%;
+  top: 43%;
+  translate: -50% -50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15em;
+  color: var(--white);
+  font: 400 8.6cqw/1 var(--display);
+  white-space: nowrap;
+}
+.clay-stone-face .stone-name {
+  font: inherit;
+}
+.clay-stone-face .stone-ticker {
+  font: 400 6.4cqw/1 var(--display);
+}
+.headstone.is-clay .stone {
+  width: min(100%, 360px);
+  background: var(--white);
+  color: var(--burn);
+  border: 1.5px solid var(--burn);
+  border-radius: 0;
+  padding: 18px 20px;
+  text-align: left;
+  rotate: var(--tilt-3);
+  filter: drop-shadow(var(--shadow) var(--shadow) 0 color-mix(in oklch, var(--burn) 22%, transparent));
+}
+.headstone.is-clay .stone > * {
+  align-self: stretch;
+  padding: 0;
+}
+.headstone.is-clay .stone dl {
+  border-color: var(--burn);
+  padding: 10px;
+}
+.headstone .note {
+  flex-basis: 100%;
+  text-align: center;
+  margin: 0 auto;
+  color: var(--burn);
+  font-family: var(--thermal);
+  background: var(--white);
+  padding: 2px 8px;
+}
+
+/* ── The forms below ── */
+.below {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.below a {
+  color: var(--ink);
+  font-weight: 600;
+}
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.steps li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 8px 10px;
+  align-items: start;
+}
+/* A tick box, as on any form. */
+.steps li::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  border: 1.5px solid var(--burn);
+  font: 700 17px/15px var(--thermal);
+  text-align: center;
+}
+.steps li.is-done::before {
+  content: 'x';
+}
+.steps button {
+  grid-column: 2;
+  justify-self: start;
+}
+.beat-form,
+.local-key form {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px 10px;
+  align-items: center;
+}
+.beat-form h3,
+.beat-form .note,
+.beat-form button,
+.local-key button {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+.beat-form {
+  border-top: 1.5px dashed var(--burn);
+  padding-top: 12px;
+}
+.local-key summary {
+  cursor: pointer;
+  font-size: 13.5px;
+}
+.local-key form {
+  margin-top: 12px;
+}
+.cpr-card dd {
+  font-weight: 700;
+}
+.small-print {
+  color: var(--burn);
+  font: 500 12.5px/1.5 var(--thermal);
+  max-width: 96ch;
+}
+
+@media (max-width: 860px) {
+  .room {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+  .room-side {
+    flex-direction: row;
+    gap: 24px;
+    order: 2;
+  }
+  .scope {
+    order: 3;
+    width: 100%;
+  }
+  .pad-compress {
+    grid-column: 1 / -1;
+  }
+  .panel,
+  .bedside,
+  .cpr-card {
+    padding-left: 40px;
+    padding-right: 14px;
+  }
+}

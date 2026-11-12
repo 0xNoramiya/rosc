@@ -1,0 +1,421 @@
+{
+  "about": "Clay sprites for the page: one patient in seven poses, a pair of hands, a bed and a headstone. Each was generated as a picture, then cleaned, scaled and placed by a script. The untrimmed originals are not in the repository.",
+  "made": {
+    "date": "2026-11-12",
+    "service": "Higgsfield",
+    "model": "gpt_image_2_6",
+    "quality": "medium",
+    "background": "transparent",
+    "images_generated": 14,
+    "images_used": 11,
+    "credits_spent": 7.5
+  },
+  "format": "WebP with alpha, quality 86. Alpha of 12 or less in the originals was set to 0 before scaling.",
+  "coin": {
+    "canvas": [
+      768,
+      768
+    ],
+    "contact": {
+      "px": [
+        384.0,
+        684
+      ],
+      "fraction": [
+        0.5,
+        0.8906
+      ],
+      "means": "The lowest point of the feet, under the middle of the face. It is the same point in every coin sprite, so one sprite can replace another with no offset."
+    },
+    "rim_diameter_px": {
+      "sitting": 477,
+      "lying": 477,
+      "pressed": 508
+    },
+    "scale_from_original": {
+      "sitting": 0.585,
+      "lying": 1.0222,
+      "pressed": 0.785
+    },
+    "how": "Sitting poses share one framing and one scale; the three eyelid frames are pinned to each other by their cheeks. The lying pose is scaled so its rim is as wide as the sitting rim. The covered pose is pinned to the lying pose by its feet."
+  },
+  "scene": {
+    "order_back_to_front": [
+      "bed",
+      "coin",
+      "hands"
+    ],
+    "coin_width_over_bed_width": 0.62,
+    "contact_on_bed": {
+      "sitting": [
+        0.5,
+        0.76
+      ],
+      "lying": [
+        0.5,
+        0.76
+      ],
+      "as": "fractions of the bed image width and height",
+      "note": "One point serves both: the coin falls back from where it sat."
+    },
+    "coin_box_in_bed_widths": {
+      "left": 0.19,
+      "top": 0.1268,
+      "size": 0.62,
+      "note": "Left and top of the coin canvas from the bed image's top left corner, in units of the bed's width."
+    },
+    "hands": {
+      "width_over_coin_width": 0.27,
+      "fingertips_on_coin": {
+        "up": [
+          0.5,
+          0.62
+        ],
+        "down": [
+          0.5,
+          0.705
+        ],
+        "as": "fractions of the coin canvas; up goes with coin-flat, down with coin-flat-pressed"
+      },
+      "box_in_coin_widths": {
+        "up": {
+          "left": 0.3568,
+          "top": -1.0072,
+          "width": 0.27,
+          "height": 1.6292
+        },
+        "down": {
+          "left": 0.3568,
+          "top": -0.9222,
+          "width": 0.27,
+          "height": 1.6292
+        },
+        "note": "Left and top of the hands image from the coin canvas's top left corner, in units of the coin canvas width. Top is negative: the arms start above the canvas."
+      },
+      "drop_in_coin_widths": 0.085,
+      "top_of_arms_above_bed_top_in_bed_widths": {
+        "up": 0.4977,
+        "down": 0.445
+      },
+      "note": "The arms end in a straight cut at the top of the image. Clip the scene somewhere below that height or the cut ends show."
+    }
+  },
+  "sprites": {
+    "coin-drowsy": {
+      "file": "coin-drowsy.webp",
+      "size": [
+        768,
+        768
+      ],
+      "bytes": 47044,
+      "use": "The patient, sitting, eyes half shut. Getting quiet. This is the first image made; every other coin pose was made from it.",
+      "job_id": "b709c18a-b154-461e-9cc8-41e854146ba5",
+      "settings": {
+        "aspect_ratio": "1:1",
+        "resolution": "1k"
+      },
+      "made_from_job": null,
+      "prompt": "A handmade plasticine clay stop-motion puppet photographed on a tabletop: a round, thick gold coin character, squat and bottom-heavy, sitting upright and facing the camera with its short stubby clay legs stretched out in front and its short stubby clay arms resting at its sides. A simple face pressed into the front of the coin: two sleepy eyes made of white clay discs with small black clay pupils and heavy gold eyelids, small round pink cheeks, a small gentle closed-mouth smile. A plain white hospital wristband on one wrist. Real modelling clay: a broad soft waxy highlight, a few faint fingerprints and tool marks, slightly lopsided hand-made shapes. Solid colours only, one colour per part: gold body, darker gold rim, white, black, pink. No outlines and no drawn lines. One key light from the upper left. The whole character in frame with a margin around it, isolated on a transparent background. No text, no letters, no numbers, no symbols or emblems on the coin, no logos.",
+      "scale_from_original": 0.585,
+      "pinned_by": "cheeks",
+      "solid_box": [
+        113,
+        134,
+        660,
+        683
+      ]
+    },
+    "coin-well": {
+      "file": "coin-well.webp",
+      "size": [
+        768,
+        768
+      ],
+      "bytes": 45224,
+      "use": "The patient, sitting, eyes open. Healthy.",
+      "job_id": "e1dcc344-7393-479e-8aa7-8bc2f3429209",
+      "settings": {
+        "aspect_ratio": "1:1",
+        "resolution": "1k"
+      },
+      "made_from_job": "b709c18a-b154-461e-9cc8-41e854146ba5",
+      "prompt": "The same clay coin character as the reference image: identical clay, colours, proportions, size and framing, sitting upright facing the camera in the same pose with its stubby arms at its sides, legs out in front and the white wristband on the same wrist. Change only the face: wide-awake eyes, with the gold eyelids raised high so most of each white eye and its black pupil shows, and a small happy closed-mouth smile. Real handmade plasticine clay stop-motion puppet photographed on a tabletop: a broad soft waxy highlight, sparse faint fingerprints, pressed seams where parts join. Solid opaque colours only, one colour per part. No outlines, no drawn lines, no gradients. One key light from the upper left. The whole character in frame with a clear margin on every side, isolated on a transparent background. No text, no letters, no numbers, no symbols, no logos.",
+      "scale_from_original": 0.585,
+      "pinned_by": "cheeks",
+      "solid_box": [
+        113,
+        132,
+        660,
+        683
+      ]
+    },
+    "coin-asleep": {
+      "file": "coin-asleep.webp",
+      "size": [
+        768,
+        768
+      ],
+      "bytes": 44962,
+      "use": "The patient, sitting, eyes shut. Nearly silent.",
+      "job_id": "a189c20a-f226-4eca-9f9c-ec7803d4a114",
+      "settings": {
+        "aspect_ratio": "1:1",
+        "resolution": "1k"
+      },
+      "made_from_job": "b709c18a-b154-461e-9cc8-41e854146ba5",
+      "prompt": "The same clay coin character as the reference image: identical clay, colours, proportions, size and framing, sitting upright facing the camera in the same pose with its stubby arms at its sides, legs out in front and the white wristband on the same wrist. Change only the face: it is fast asleep, both eyes fully closed, each eye completely covered by its gold eyelid so no white and no pupil shows, just a gentle curved seam along the bottom of each lid, and a small relaxed straight mouth. Real handmade plasticine clay stop-motion puppet photographed on a tabletop: a broad soft waxy highlight, sparse faint fingerprints, pressed seams where parts join. Solid opaque colours only, one colour per part. No outlines, no drawn lines, no gradients. One key light from the upper left. The whole character in frame with a clear margin on every side, isolated on a transparent background. No text, no letters, no numbers, no symbols, no logos.",
+      "scale_from_original": 0.585,
+      "pinned_by": "cheeks",
+      "solid_box": [
+        112,
+        133,
+        661,
+        683
+      ]
+    },
+    "coin-take": {
+      "file": "coin-take.webp",
+      "size": [
+        768,
+        768
+      ],
+      "bytes": 49030,
+      "use": "The patient, sitting, arms up and mouth open. The breath it takes when it comes back.",
+      "job_id": "5c686e4d-864c-4996-9128-c9117f6f2501",
+      "settings": {
+        "aspect_ratio": "1:1",
+        "resolution": "1k"
+      },
+      "made_from_job": "b709c18a-b154-461e-9cc8-41e854146ba5",
+      "prompt": "The same clay coin character as the reference image: identical clay, colours and proportions, sitting upright facing the camera with its legs out in front, now overjoyed: eyes wide open and round with the gold eyelids raised right up, a big open-mouthed smile with a dark red-brown clay mouth and a small pink clay tongue, and both stubby arms thrown straight up in the air above its head, the white wristband on the same wrist. Real handmade plasticine clay stop-motion puppet photographed on a tabletop: a broad soft waxy highlight, sparse faint fingerprints, pressed seams where parts join. Solid opaque colours only, one colour per part. No outlines, no drawn lines, no gradients. One key light from the upper left. The whole character including its raised arms in frame with a clear margin on every side, isolated on a transparent background. No text, no letters, no numbers, no symbols, no logos.",
+      "scale_from_original": 0.585,
+      "pinned_by": "feet overlap with the hero",
+      "solid_box": [
+        104,
+        133,
+        675,
+        685
+      ],
+      "note": "The generator redrew the body a little taller and narrower than in the other sitting poses, so the outline changes when this frame swaps in. It is pinned by its feet, which do line up."
+    },
+    "coin-flat": {
+      "file": "coin-flat.webp",
+      "size": [
+        768,
+        768
+      ],
+      "bytes": 39042,
+      "use": "The patient on its back, eyes shut. In arrest; also the up frame of a compression.",
+      "job_id": "323592e3-416e-4a22-88f3-f77ec4d2b2f5",
+      "settings": {
+        "aspect_ratio": "3:2",
+        "resolution": "1k"
+      },
+      "made_from_job": "d3dafd1c-a796-49db-9dd6-e13218ae1f6e",
+      "prompt": "Exactly the same clay coin character, the same lying-on-its-back pose, the same face and the same camera angle as the reference image, but zoomed out: the character is smaller in the frame, occupying about two thirds of the frame width, completely inside the picture with a generous empty transparent margin on all four sides. Nothing is cropped: both arms, both feet and the whole rim are fully visible. Eyes closed under gold eyelids, mouth a short straight line, arms flopped out to the sides, two stubby legs toward the camera, white wristband on the same wrist. Real handmade plasticine clay stop-motion puppet: a broad soft waxy highlight, sparse faint fingerprints, pressed seams. Solid opaque colours only, one colour per part. No outlines, no drawn lines, no gradients. One key light from the upper left. Isolated on a transparent background. No text, no letters, no numbers, no symbols, no logos.",
+      "scale_from_original": 1.0222,
+      "pinned_by": "cheeks (x), feet (y)",
+      "solid_box": [
+        84,
+        278,
+        692,
+        684
+      ],
+      "face_centre": [
+        384.0,
+        451.7
+      ]
+    },
+    "coin-flat-pressed": {
+      "file": "coin-flat-pressed.webp",
+      "size": [
+        768,
+        768
+      ],
+      "bytes": 34690,
+      "use": "The patient on its back, squashed. The down frame of a compression.",
+      "job_id": "08cc7049-c9d5-4236-b91d-9385791a8792",
+      "settings": {
+        "aspect_ratio": "3:2",
+        "resolution": "1k"
+      },
+      "made_from_job": "323592e3-416e-4a22-88f3-f77ec4d2b2f5",
+      "prompt": "The same clay coin character in exactly the same lying-on-its-back pose, the same camera angle, the same position, size and framing as the reference image, but visibly squashed flatter, as if pressed down hard from above: its body is clearly lower and thinner, with a shallow dent pressed into the middle of its face, its sides bulging wider, its pink cheeks pushed outward, its eyes squeezed tightly shut, its mouth a small squashed line, and its arms and legs splayed a little wider from the pressure. White wristband on the same wrist. Completely inside the picture with an empty transparent margin on all four sides. Real handmade plasticine clay stop-motion puppet: a broad soft waxy highlight, sparse faint fingerprints, pressed seams. Solid opaque colours only, one colour per part. No outlines, no drawn lines, no gradients. One key light from the upper left. Isolated on a transparent background. No hands, no other objects, no text, no letters, no numbers, no symbols, no logos.",
+      "scale_from_original": 0.785,
+      "pinned_by": "cheeks (x), feet (y)",
+      "solid_box": [
+        55,
+        389,
+        719,
+        685
+      ],
+      "face_centre": [
+        384.0,
+        519.9
+      ],
+      "note": "The generator framed this pose closer than coin-flat, so its scale was chosen, not measured: 0.722 of the flat scale would give the same rim width and 0.70 the same feet; 0.768 lets the rim spread about 6% and the feet about a tenth."
+    },
+    "coin-covered": {
+      "file": "coin-covered.webp",
+      "size": [
+        768,
+        768
+      ],
+      "bytes": 40164,
+      "use": "The patient under a sheet, feet out, blank tag on one foot. Dead.",
+      "job_id": "b2ba0949-6a5d-4183-bdba-b81040f2b23a",
+      "settings": {
+        "aspect_ratio": "3:2",
+        "resolution": "1k"
+      },
+      "made_from_job": "323592e3-416e-4a22-88f3-f77ec4d2b2f5",
+      "prompt": "The same clay coin character lying flat in the same position, the same camera angle, the same size and framing as the reference image, now completely covered by a small plain white clay sheet draped over it, so that only the low round lump of its shape under the sheet and its two stubby gold feet sticking out at the near edge are visible. A small blank cream paper tag is tied with a short string to one toe. No face, no arms and no wristband visible. Completely inside the picture with an empty transparent margin on all four sides. Real handmade plasticine clay stop-motion set: a broad soft waxy highlight, sparse faint fingerprints, soft folds pressed into the sheet. Solid opaque colours only, one colour per part: white sheet, gold feet, cream tag. No outlines, no drawn lines, no gradients. One key light from the upper left. Isolated on a transparent background. Nothing written on the tag, no text, no letters, no numbers, no symbols, no logos.",
+      "scale_from_original": 1.0222,
+      "pinned_by": "feet",
+      "solid_box": [
+        45,
+        258,
+        722,
+        748
+      ],
+      "note": "The tag hangs 64 px below the contact line; the canvas leaves 84 px there for it."
+    },
+    "hands": {
+      "file": "hands.webp",
+      "size": [
+        264,
+        1593
+      ],
+      "bytes": 55142,
+      "use": "Gloved hands on two long forearms that come in from above. They sit on coin-flat and drop with coin-flat-pressed.",
+      "job_id": "2f6563b1-ce6f-4c76-b6dc-00d9d3520f35",
+      "settings": {
+        "aspect_ratio": "9:16",
+        "resolution": "2k"
+      },
+      "made_from_job": "e42198bc-fdbb-4a5d-9fdf-64e70a908d9e",
+      "prompt": "The same pair of pale blue gloved clay hands as in the reference image, in the same pose, shape, colour and style: one hand stacked on top of the other with the fingers interlaced, the heel of the lower hand pressing straight down. Now seen from much further back in a tall, narrow picture. The hands are small and sit at the very bottom of the picture, taking up only the lowest quarter of its height and about half of its width. The two pale blue clay forearms are very long, plain and straight, like two long smooth clay sleeves, and they run all the way up the picture close together and almost parallel, leaving through the top edge. The forearms keep the same thickness along their whole length and have no elbows, no bends, no cuffs higher up and no other details. Seen from the front at a slight downward angle. Only the two gloved hands and forearms, nothing underneath them and nothing else in the picture. Real oil-based modelling clay for a stop-motion set: a broad soft waxy highlight, sparse faint fingerprints, pressed seams, simple chunky mitten-like shapes. Solid opaque colour, one pale blue. No outlines, no drawn lines, no gradients. One key light from the upper left. Isolated on a transparent background with a clear margin at the sides and bottom. No text, no letters, no numbers, no symbols, no logos.",
+      "scale_from_original": 0.4244,
+      "cropped_from_original": [
+        448,
+        0,
+        1070,
+        2644
+      ],
+      "fingertips": {
+        "px": [
+          140.0,
+          1591
+        ],
+        "fraction": [
+          0.5303,
+          0.9987
+        ]
+      },
+      "arms_at_top_edge_px": [
+        7,
+        256
+      ],
+      "note": "The top 942 rows are plain sleeves drawn out to twice their length in processing, to give room to bring the arms in from outside the frame. The hands are a second generation made from hands-close and differ from it a little in pose."
+    },
+    "hands-close": {
+      "file": "hands-close.webp",
+      "size": [
+        501,
+        640
+      ],
+      "bytes": 40310,
+      "use": "The same hands closer up, with short forearms. A spare: its forearms end in a straight cut at the top edge, so that edge has to be hidden.",
+      "job_id": "e42198bc-fdbb-4a5d-9fdf-64e70a908d9e",
+      "settings": {
+        "aspect_ratio": "1:1",
+        "resolution": "1k"
+      },
+      "made_from_job": null,
+      "prompt": "A pair of handmade plasticine clay hands wearing pale blue gloves, one hand stacked on top of the other with the fingers interlaced, the heel of the lower hand pressing straight down as for a chest compression, with two short straight pale blue clay forearms coming down into the frame from the top. Seen from the front at a slight downward angle, about 30 degrees above. Only the two gloved hands and forearms, nothing underneath them and nothing else in the picture. Real oil-based modelling clay for a stop-motion set: a broad soft waxy highlight, sparse faint fingerprints, pressed seams, simple chunky mitten-like shapes. Solid opaque colour, one pale blue. No outlines, no drawn lines, no gradients. One key light from the upper left. Isolated on a transparent background with a clear margin at the sides and bottom. No text, no letters, no numbers, no symbols, no logos.",
+      "scale_from_original": 0.6941,
+      "cropped_from_original": [
+        151,
+        0,
+        873,
+        922
+      ],
+      "fingertips": {
+        "px": [
+          283.5,
+          636
+        ],
+        "fraction": [
+          0.5659,
+          0.9938
+        ]
+      },
+      "arms_at_top_edge_px": [
+        5,
+        496
+      ]
+    },
+    "headstone": {
+      "file": "headstone.webp",
+      "size": [
+        640,
+        547
+      ],
+      "bytes": 43082,
+      "use": "A blank clay headstone with a flower. Stands on its own once the coin is gone.",
+      "job_id": "50fb183a-cb15-4001-b4bd-39caef17ea9f",
+      "settings": {
+        "aspect_ratio": "1:1",
+        "resolution": "1k"
+      },
+      "made_from_job": null,
+      "prompt": "A small handmade plasticine clay headstone shaped like an upright round coin: a thick, plain, grey clay disc standing on a low grey clay base, with a raised rounded rim like a coin and a completely blank, smooth face. Beside it stands a single small clay flower with a green stem, one green leaf and pink petals around a yellow centre. Seen straight on from the front. Real oil-based modelling clay for a stop-motion set: a broad soft waxy highlight, sparse faint fingerprints and tool marks, pressed seams where parts join, slightly uneven hand-made shapes. Solid opaque colours only, one colour per part. No outlines, no drawn lines, no gradients. One key light from the upper left. Both objects in frame with a clear margin on every side, isolated on a transparent background. No text, no letters, no numbers, no carving, no symbols, no logos.",
+      "scale_from_original": 0.6716,
+      "cropped_from_original": [
+        41,
+        105,
+        994,
+        919
+      ],
+      "note": "Nothing is written on it. The flower is part of the image, on the right."
+    },
+    "bed": {
+      "file": "bed.webp",
+      "size": [
+        760,
+        679
+      ],
+      "bytes": 45488,
+      "use": "The bed the patient sits and lies on.",
+      "job_id": "074f8f94-67dd-4010-a4a7-9bc427b5d294",
+      "settings": {
+        "aspect_ratio": "3:2",
+        "resolution": "1k"
+      },
+      "made_from_job": null,
+      "prompt": "A small handmade miniature hospital bed for a stop-motion set, empty and neatly made, with nobody in it: a simple low frame with four short legs and a rounded headboard made of painted card and clay in a warm cream colour, a white clay mattress, one plump white clay pillow at the far head end, and a pink clay blanket covering the lower two thirds with its top edge folded back. Seen from the foot end at a slightly raised angle, about 30 degrees above, looking up the bed toward the pillow, so the whole top surface of the bed is visible. Wide and low, big enough for a round toy to sit or lie on. Real oil-based modelling clay and card: a broad soft waxy highlight, sparse faint fingerprints, pressed seams, slightly uneven hand-made shapes. Solid opaque colours only, one colour per part. No outlines, no drawn lines, no gradients. One key light from the upper left. The whole bed in frame with a clear margin on every side, isolated on a transparent background. No figures, no text, no letters, no numbers, no symbols, no logos.",
+      "scale_from_original": 0.9974,
+      "cropped_from_original": [
+        129,
+        3,
+        891,
+        684
+      ],
+      "note": "No shadow under it."
+    }
+  },
+  "generated_but_not_used": [
+    {
+      "job_id": "43177eff-5a24-4e1a-bd22-243b7e6ebd94",
+      "what": "A three-quarter view of the sitting coin."
+    },
+    {
+      "job_id": "d3dafd1c-a796-49db-9dd6-e13218ae1f6e",
+      "what": "The first lying pose, framed closer. coin-flat was made from it."
+    },
+    {
+      "job_id": "104b253f-deed-443e-aa69-d7d789c6fb40",
+      "what": "The bed framed further back; the first bed is sharper."
+    }
+  ]
+}

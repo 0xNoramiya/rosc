@@ -1,0 +1,111 @@
+{
+  "measured_at": "2026-11-12T12:54:15.858Z",
+  "network": "testnet",
+  "contract": "rosc-99c099.testnet",
+  "wasm_sha256": "6038da1c0634a4106dbf2401f18dac90fb7a2671eb8c00e2928cfeb6f3b52976",
+  "block_ms": 594.7,
+  "gas": {
+    "compress_counted": {
+      "n": 120,
+      "median": 2493815167203,
+      "min": 2260137772891,
+      "max": 3338582667771,
+      "median_tgas": 2.494
+    },
+    "compress_already_this_block": {
+      "n": 12,
+      "median": 2415895992477,
+      "min": 2169055424230,
+      "max": 2415895992477,
+      "median_tgas": 2.416
+    },
+    "compress_hands_off": {
+      "n": 8,
+      "median": 2512492597808,
+      "min": 2272740917843,
+      "max": 2513679585294,
+      "median_tgas": 2.512
+    },
+    "breathe": {
+      "n": 8,
+      "median": 2514100115429,
+      "min": 2273688310952,
+      "max": 2653282491400,
+      "median_tgas": 2.514
+    },
+    "push_epi": {
+      "n": 1,
+      "median": 4649495504640,
+      "min": 4649495504640,
+      "max": 4649495504640,
+      "median_tgas": 4.649
+    },
+    "call_code": {
+      "n": 1,
+      "median": 2548253085680,
+      "min": 2548253085680,
+      "max": 2548253085680,
+      "median_tgas": 2.548
+    },
+    "ft_transfer": {
+      "n": 9,
+      "median": 4386212740230,
+      "min": 4374952278862,
+      "max": 4612770246621,
+      "median_tgas": 4.386
+    },
+    "faucet_claim": {
+      "n": 8,
+      "median": 3404122196286,
+      "min": 3202018720755,
+      "max": 3436682515242,
+      "median_tgas": 3.404
+    },
+    "storage_deposit": {
+      "n": 8,
+      "median": 2070355965061,
+      "min": 1847173402561,
+      "max": 2120515965061,
+      "median_tgas": 2.07
+    },
+    "claim_bounty": {
+      "n": 2,
+      "median": 3602547294392,
+      "min": 3380851103012,
+      "max": 3602547294392,
+      "median_tgas": 3.603
+    },
+    "call_time_of_death_writing_three_deaths": {
+      "n": 1,
+      "median": 5793105906841,
+      "min": 5793105906841,
+      "max": 5793105906841,
+      "median_tgas": 5.793
+    }
+  },
+  "full_code": {
+    "rounds": 2,
+    "near_spent": {
+      "bot-compressor": 0.017163,
+      "bot-airway": 0.018402
+    },
+    "presses": 145,
+    "counted": 120,
+    "counted_share_of_presses": 0.8275862068965517,
+    "blocks_from_first_to_thirtieth": [
+      33,
+      31,
+      37,
+      36
+    ],
+    "landing_rate": 0.8802442471797312
+  },
+  "rpc": {
+    "requests": 1078,
+    "refused": 9,
+    "byEndpoint": {
+      "https://test.rpc.fastnear.com": 476,
+      "https://near-testnet.drpc.org": 602
+    }
+  }
+}

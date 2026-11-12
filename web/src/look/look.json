@@ -1,0 +1,23 @@
+{
+  "seed": 302,
+  "inks": "ward",
+  "patient": "clay",
+  "wall": "dots",
+  "type": "plex",
+  "poseRate": 12,
+  "bounce": 5,
+  "squash": 0.86,
+  "boil": 0.6,
+  "mm": 5,
+  "gridInk": 0.35,
+  "trace": 2.25,
+  "warmth": 4,
+  "register": 1.5,
+  "dot": 5,
+  "dotAngle": 30,
+  "density": 1,
+  "mottle": 0.06,
+  "border": 4,
+  "tilt": 1.25,
+  "shadow": 3.5
+}

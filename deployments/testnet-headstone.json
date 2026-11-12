@@ -1,0 +1,103 @@
+{
+  "name": "testnet-headstone",
+  "network": "testnet",
+  "contract": "rosc-9e2af2.testnet",
+  "rpc": [
+    "https://test.rpc.fastnear.com",
+    "https://near-testnet.drpc.org"
+  ],
+  "preset": "demo",
+  "overrides": {
+    "no_flow_max_blocks": 60,
+    "lazarus_blocks": 20
+  },
+  "note": "Demo preset with a shortened life, so three unanswered codes take about three minutes: NO_FLOW_MAX_BLOCKS 60 instead of 1,000 and LAZARUS_BLOCKS 20 instead of 50.",
+  "config": {
+    "arrest_blocks": 100,
+    "min_stroke": "1000000000000000000",
+    "refractory_blocks": 5,
+    "bucket_blocks": 10,
+    "sudden_beats": 8,
+    "pea_min": 3,
+    "vf_degrade_round": 4,
+    "compressions_per_cycle": 30,
+    "breaths_per_cycle": 2,
+    "cycles_per_round": 2,
+    "vent_window_blocks": 16,
+    "max_pause_blocks": 100,
+    "max_rounds": 10,
+    "no_flow_max_blocks": 60,
+    "lazarus_blocks": 20,
+    "rehab_blocks": 1000,
+    "base_target": 200,
+    "scar_target": 50,
+    "noflow_target_cap": 200,
+    "noflow_target_blocks": 10,
+    "hands_only_bps": 7000,
+    "breath_bps": 1500,
+    "fatigue_bps": 8000,
+    "epi_bonus": 50,
+    "epi_first_round": 2,
+    "epi_every_rounds": 2,
+    "shock_bonus": 150,
+    "shock_min_quality_bps": 6000,
+    "o2_bps": 50,
+    "premium_bps": 50,
+    "noflow_burn_bps": 1,
+    "noflow_burn_blocks": 100,
+    "epi_dose": "1000000000000000000000000",
+    "death_burn_bps": 1000,
+    "max_deaths": 3,
+    "rosc_scars": 1,
+    "death_scars": 2,
+    "bounty_bps": 200,
+    "ef_start": 60,
+    "ef_step": 5,
+    "ef_floor": 20,
+    "units_compression": 1,
+    "units_breath": 5,
+    "units_shock": 15,
+    "units_call_code": 10,
+    "total_supply": "2500000000000000000000000000",
+    "cart_bps": 4000,
+    "faucet_amount": "1000000000000000000000000",
+    "min_rescuer_balance": "1000000000000000000000",
+    "post_mortem_transfers": false
+  },
+  "deployed_at_block": 277364950,
+  "deployed_at": "2026-11-12T12:48:56.154Z",
+  "deploy_tx": "AVwvx2U8xx7F2DH3z4ARmkFdRfeXP1uwFW5LJxaQY6ic",
+  "wasm_bytes": 275467,
+  "wasm_sha256": "6038da1c0634a4106dbf2401f18dac90fb7a2671eb8c00e2928cfeb6f3b52976",
+  "bots": [
+    {
+      "id": "bot-holder-1.rosc-9e2af2.testnet",
+      "role": "bot-holder-1",
+      "created_tx": "CjntyoQhoJZqxrZGY6RbcZQbwT1SWfpmFgRsAj7rAzdP",
+      "faucet_tx": "8U54PxrYqaHU6GDvoxG8SSm7afnkucYQYSPCS4eqwsf7",
+      "faucet_gas": "3262316270467",
+      "storage_gas": "1881373402561"
+    },
+    {
+      "id": "bot-holder-2.rosc-9e2af2.testnet",
+      "role": "bot-holder-2",
+      "created_tx": "BysxwMSWcgq5YZZPXA6JUDkPFUNse7ivsux3cJc19Dzo",
+      "faucet_tx": "Fznw6FAbdKkhubAHhAN1UWP9rHzwsTqmqZ9hQtMbLPQi",
+      "faucet_gas": "3188338720755",
+      "storage_gas": "1842613402561"
+    }
+  ],
+  "no_admin": {
+    "keys_before": 1,
+    "delete_key_tx": "3tFTYBgXgsNi9ycitGngVDw9SaQaTQ6feXJVaQchPA8E",
+    "keys_after": [],
+    "command": "near account list-keys rosc-9e2af2.testnet network-config testnet now",
+    "output": "+---+------------+-------+-------------+\n| # | Public Key | Nonce | Permissions |\n+---+------------+-------+-------------+\n+---+------------+-------+-------------+"
+  },
+  "supply_at_launch": "2500000000000000000000000000",
+  "explorer": {
+    "contract": "https://testnet.nearblocks.io/address/rosc-9e2af2.testnet",
+    "deploy_tx": "https://testnet.nearblocks.io/txns/AVwvx2U8xx7F2DH3z4ARmkFdRfeXP1uwFW5LJxaQY6ic",
+    "delete_key_tx": "https://testnet.nearblocks.io/txns/3tFTYBgXgsNi9ycitGngVDw9SaQaTQ6feXJVaQchPA8E"
+  }
+}

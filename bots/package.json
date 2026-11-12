@@ -1,0 +1,10 @@
+{
+  "name": "codeblue-bots",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Deploy script, stand-in community, pager and demo runner for Code Blue ($ROSC) on NEAR testnet",
+  "dependencies": {
+    "near-api-js": "7.5.3"
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "name": "testnet-demo",
+  "network": "testnet",
+  "contract": "rosc-99c099.testnet",
+  "rpc": [
+    "https://test.rpc.fastnear.com",
+    "https://near-testnet.drpc.org"
+  ],
+  "preset": "demo",
+  "overrides": {},
+  "note": null,
+  "config": {
+    "arrest_blocks": 100,
+    "min_stroke": "1000000000000000000",
+    "refractory_blocks": 5,
+    "bucket_blocks": 10,
+    "sudden_beats": 8,
+    "pea_min": 3,
+    "vf_degrade_round": 4,
+    "compressions_per_cycle": 30,
+    "breaths_per_cycle": 2,
+    "cycles_per_round": 2,
+    "vent_window_blocks": 16,
+    "max_pause_blocks": 100,
+    "max_rounds": 10,
+    "no_flow_max_blocks": 1000,
+    "lazarus_blocks": 50,
+    "rehab_blocks": 1000,
+    "base_target": 200,
+    "scar_target": 50,
+    "noflow_target_cap": 200,
+    "noflow_target_blocks": 10,
+    "hands_only_bps": 7000,
+    "breath_bps": 1500,
+    "fatigue_bps": 8000,
+    "epi_bonus": 50,
+    "epi_first_round": 2,
+    "epi_every_rounds": 2,
+    "shock_bonus": 150,
+    "shock_min_quality_bps": 6000,
+    "o2_bps": 50,
+    "premium_bps": 50,
+    "noflow_burn_bps": 1,
+    "noflow_burn_blocks": 100,
+    "epi_dose": "1000000000000000000000000",
+    "death_burn_bps": 1000,
+    "max_deaths": 3,
+    "rosc_scars": 1,
+    "death_scars": 2,
+    "bounty_bps": 200,
+    "ef_start": 60,
+    "ef_step": 5,
+    "ef_floor": 20,
+    "units_compression": 1,
+    "units_breath": 5,
+    "units_shock": 15,
+    "units_call_code": 10,
+    "total_supply": "2500000000000000000000000000",
+    "cart_bps": 4000,
+    "faucet_amount": "1000000000000000000000000",
+    "min_rescuer_balance": "1000000000000000000000",
+    "post_mortem_transfers": false
+  },
+  "deployed_at_block": 277364990,
+  "deployed_at": "2026-11-12T12:49:18.342Z",
+  "deploy_tx": "2uXwEcYvkeWH8A4L5ki8Rr1eo23m8rP1nKEUxFdz3yji",
+  "wasm_bytes": 275467,
+  "wasm_sha256": "6038da1c0634a4106dbf2401f18dac90fb7a2671eb8c00e2928cfeb6f3b52976",
+  "bots": [
+    {
+      "id": "bot-holder-1.rosc-99c099.testnet",
+      "role": "bot-holder-1",
+      "created_tx": "4433cfCa9JVneEhEbzAn8Bp9HuaNYbsJ9Ae6TMuZnTfy",
+      "faucet_tx": "EuMG6AKofkmXNjtp4C3neh9Z8Zqt8qic5N45sABuFHAv",
+      "faucet_gas": "3425201283255",
+      "storage_gas": "2070355965061"
+    },
+    {
+      "id": "bot-holder-2.rosc-99c099.testnet",
+      "role": "bot-holder-2",
+      "created_tx": "7TYf2ukhKvh2uerRm3JZk5nGBrk9WLVaHgaYvqRY4wJQ",
+      "faucet_tx": "oyLZo5yEfiCHgyunJykDtKtPu5wanDBSZd47ZkgKcJ9",
+      "faucet_gas": "3202018720755",
+      "storage_gas": "1847173402561"
+    },
+    {
+      "id": "bot-holder-3.rosc-99c099.testnet",
+      "role": "bot-holder-3",
+      "created_tx": "5tt7Pfb4ADeripnFr9dpACiUUQJJVR5Zf4u4x3URQ9ey",
+      "faucet_tx": "6jnV2WT7oyL2FYcRLFrMNH9B1Jzaz8dEPRwsHFeDYaC",
+      "faucet_gas": "3294236270467",
+      "storage_gas": "1890493402561"
+    },
+    {
+      "id": "bot-holder-4.rosc-99c099.testnet",
+      "role": "bot-holder-4",
+      "created_tx": "6Uyiq2PoVjEPmbTMTxQ1YH8qAtxEza4Kt5ZWSsNCcC9g",
+      "faucet_tx": "2Pn5mwrjmbyE4e74ttDpvyRV4PwTkoXYwbxYKAwTaipD",
+      "faucet_gas": "3404938720755",
+      "storage_gas": "2120515965061"
+    },
+    {
+      "id": "bot-pacer.rosc-99c099.testnet",
+      "role": "bot-pacer",
+      "created_tx": "DXodceSYENcrkNAZoaa7oN6BxyMpcnemyGUyegB3MDh5",
+      "faucet_tx": "FvSwtGbzLDpWhbnSXs71afCPcrRTkqCphsCg8mComS5Y",
+      "faucet_gas": "3436682515242",
+      "storage_gas": "2074463328709"
+    },
+    {
+      "id": "bot-pacer-2.rosc-99c099.testnet",
+      "role": "bot-pacer-2",
+      "created_tx": "8w5Y8iR5RFdEcE2eJBgM1W7rwLFeoei3u7q1NHPrXLxr",
+      "faucet_tx": "gXFtzcgTFo7qUtGR8womo2iUu2Unz9czvUqQYsC8Hzf",
+      "faucet_gas": "3404122196286",
+      "storage_gas": "2118141856441"
+    },
+    {
+      "id": "bot-compressor.rosc-99c099.testnet",
+      "role": "bot-compressor",
+      "created_tx": "6Fp6NZoERHJyQk5kYKLrGW6F8frtBU7Z4EnDWn19ECJE",
+      "faucet_tx": "G9SRUvQRaFLn6p861RBMBjvYimoqDmwLsXaLPq64LbR3",
+      "faucet_gas": "3214831299833",
+      "storage_gas": "1899944779345"
+    },
+    {
+      "id": "bot-airway.rosc-99c099.testnet",
+      "role": "bot-airway",
+      "created_tx": "BZ62ApxdQgNqDMccxyZxQe9DLEdZ3nLn6KmKDuBZnfmW",
+      "faucet_tx": "ieiqfdSkH14EfBqLLC1yXwLr58GKudAGdmJTypG9RWZ",
+      "faucet_gas": "3401225069335",
+      "storage_gas": "1856013859405"
+    }
+  ],
+  "no_admin": {
+    "keys_before": 1,
+    "delete_key_tx": "gx1qJ5iCU9vBxQHKcvQA4tanKSpPTixFxjQyGCD4cuL",
+    "keys_after": [],
+    "command": "near account list-keys rosc-99c099.testnet network-config testnet now",
+    "output": "+---+------------+-------+-------------+\n| # | Public Key | Nonce | Permissions |\n+---+------------+-------+-------------+\n+---+------------+-------+-------------+"
+  },
+  "supply_at_launch": "2500000000000000000000000000",
+  "explorer": {
+    "contract": "https://testnet.nearblocks.io/address/rosc-99c099.testnet",
+    "deploy_tx": "https://testnet.nearblocks.io/txns/2uXwEcYvkeWH8A4L5ki8Rr1eo23m8rP1nKEUxFdz3yji",
+    "delete_key_tx": "https://testnet.nearblocks.io/txns/gx1qJ5iCU9vBxQHKcvQA4tanKSpPTixFxjQyGCD4cuL"
+  }
+}

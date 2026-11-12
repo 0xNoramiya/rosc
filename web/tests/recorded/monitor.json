@@ -1,0 +1,1100 @@
+{
+  "monitor": {
+    "block": 277375286,
+    "status": {
+      "Alive": {
+        "arrest_block": 277375358
+      }
+    },
+    "code": null,
+    "last_beat_block": 277375257,
+    "alive_since_block": 277365418,
+    "scars": 0,
+    "deaths": 0,
+    "max_deaths": 3,
+    "ejection_fraction": 60,
+    "beats": [
+      {
+        "block": 277371665,
+        "tag": 380709786
+      },
+      {
+        "block": 277371720,
+        "tag": 896944877
+      },
+      {
+        "block": 277371778,
+        "tag": 380709786
+      },
+      {
+        "block": 277371836,
+        "tag": 896944877
+      },
+      {
+        "block": 277371894,
+        "tag": 380709786
+      },
+      {
+        "block": 277371949,
+        "tag": 896944877
+      },
+      {
+        "block": 277372006,
+        "tag": 380709786
+      },
+      {
+        "block": 277372065,
+        "tag": 896944877
+      },
+      {
+        "block": 277372128,
+        "tag": 380709786
+      },
+      {
+        "block": 277372186,
+        "tag": 896944877
+      },
+      {
+        "block": 277372246,
+        "tag": 380709786
+      },
+      {
+        "block": 277372305,
+        "tag": 896944877
+      },
+      {
+        "block": 277372366,
+        "tag": 380709786
+      },
+      {
+        "block": 277372427,
+        "tag": 896944877
+      },
+      {
+        "block": 277372482,
+        "tag": 380709786
+      },
+      {
+        "block": 277372536,
+        "tag": 896944877
+      },
+      {
+        "block": 277372591,
+        "tag": 380709786
+      },
+      {
+        "block": 277372645,
+        "tag": 896944877
+      },
+      {
+        "block": 277372699,
+        "tag": 380709786
+      },
+      {
+        "block": 277372753,
+        "tag": 896944877
+      },
+      {
+        "block": 277372812,
+        "tag": 380709786
+      },
+      {
+        "block": 277372871,
+        "tag": 896944877
+      },
+      {
+        "block": 277372936,
+        "tag": 380709786
+      },
+      {
+        "block": 277372997,
+        "tag": 896944877
+      },
+      {
+        "block": 277373051,
+        "tag": 380709786
+      },
+      {
+        "block": 277373110,
+        "tag": 896944877
+      },
+      {
+        "block": 277373166,
+        "tag": 380709786
+      },
+      {
+        "block": 277373221,
+        "tag": 896944877
+      },
+      {
+        "block": 277373275,
+        "tag": 380709786
+      },
+      {
+        "block": 277373330,
+        "tag": 896944877
+      },
+      {
+        "block": 277373384,
+        "tag": 380709786
+      },
+      {
+        "block": 277373438,
+        "tag": 896944877
+      },
+      {
+        "block": 277373493,
+        "tag": 380709786
+      },
+      {
+        "block": 277373552,
+        "tag": 896944877
+      },
+      {
+        "block": 277373613,
+        "tag": 380709786
+      },
+      {
+        "block": 277373672,
+        "tag": 896944877
+      },
+      {
+        "block": 277373731,
+        "tag": 380709786
+      },
+      {
+        "block": 277373785,
+        "tag": 896944877
+      },
+      {
+        "block": 277373841,
+        "tag": 380709786
+      },
+      {
+        "block": 277373895,
+        "tag": 896944877
+      },
+      {
+        "block": 277373951,
+        "tag": 380709786
+      },
+      {
+        "block": 277374010,
+        "tag": 896944877
+      },
+      {
+        "block": 277374068,
+        "tag": 380709786
+      },
+      {
+        "block": 277374128,
+        "tag": 896944877
+      },
+      {
+        "block": 277374184,
+        "tag": 380709786
+      },
+      {
+        "block": 277374237,
+        "tag": 896944877
+      },
+      {
+        "block": 277374291,
+        "tag": 380709786
+      },
+      {
+        "block": 277374345,
+        "tag": 896944877
+      },
+      {
+        "block": 277374398,
+        "tag": 380709786
+      },
+      {
+        "block": 277374456,
+        "tag": 896944877
+      },
+      {
+        "block": 277374518,
+        "tag": 380709786
+      },
+      {
+        "block": 277374576,
+        "tag": 896944877
+      },
+      {
+        "block": 277374635,
+        "tag": 380709786
+      },
+      {
+        "block": 277374692,
+        "tag": 896944877
+      },
+      {
+        "block": 277374748,
+        "tag": 380709786
+      },
+      {
+        "block": 277374811,
+        "tag": 896944877
+      },
+      {
+        "block": 277374870,
+        "tag": 380709786
+      },
+      {
+        "block": 277374929,
+        "tag": 896944877
+      },
+      {
+        "block": 277374984,
+        "tag": 380709786
+      },
+      {
+        "block": 277375038,
+        "tag": 896944877
+      },
+      {
+        "block": 277375093,
+        "tag": 380709786
+      },
+      {
+        "block": 277375148,
+        "tag": 896944877
+      },
+      {
+        "block": 277375203,
+        "tag": 380709786
+      },
+      {
+        "block": 277375257,
+        "tag": 896944877
+      }
+    ],
+    "buckets": [
+      {
+        "index": 27736670,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27736681,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27736742,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27736867,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27736878,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27736884,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27736912,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27736988,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737088,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737110,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737115,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737121,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737127,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737132,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737138,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737144,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737155,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737206,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737212,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737224,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737230,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737248,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737275,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737281,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737287,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737293,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737299,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737305,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737316,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737327,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737338,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737343,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737349,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737355,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737361,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737367,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737373,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737378,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737384,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737389,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737395,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737401,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737406,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737412,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737418,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737429,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737451,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737457,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737463,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737469,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737474,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737481,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737487,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737492,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737498,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737503,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737509,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737514,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737520,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737525,
+        "beats": 1,
+        "electrical": 0
+      }
+    ],
+    "pools": {
+      "cart": "979000402786367072000000001",
+      "faucet": "1492000000000000000000000000",
+      "claimable": "0"
+    },
+    "supply": "2498979997179966400000000000",
+    "totals": {
+      "burned_oxygen": "2820000000000000000",
+      "burned_noflow": "20000000033600000000000",
+      "burned_epi": "1000000000000000000000000",
+      "burned_death": "0",
+      "burned_estate": "0",
+      "premiums": "2820000000000000000",
+      "donations": "0",
+      "bounties": "19979600033599327999999999",
+      "faucet_paid": "8000000000000000000000000",
+      "beats": 188,
+      "electrical": 0,
+      "arrests": 1,
+      "saves": 1
+    },
+    "config": {
+      "arrest_blocks": 100,
+      "min_stroke": "1000000000000000000",
+      "refractory_blocks": 5,
+      "bucket_blocks": 10,
+      "sudden_beats": 8,
+      "pea_min": 3,
+      "vf_degrade_round": 4,
+      "compressions_per_cycle": 30,
+      "breaths_per_cycle": 2,
+      "cycles_per_round": 2,
+      "vent_window_blocks": 16,
+      "max_pause_blocks": 100,
+      "max_rounds": 10,
+      "no_flow_max_blocks": 1000,
+      "lazarus_blocks": 50,
+      "rehab_blocks": 1000,
+      "base_target": 200,
+      "scar_target": 50,
+      "noflow_target_cap": 200,
+      "noflow_target_blocks": 10,
+      "hands_only_bps": 7000,
+      "breath_bps": 1500,
+      "fatigue_bps": 8000,
+      "epi_bonus": 50,
+      "epi_first_round": 2,
+      "epi_every_rounds": 2,
+      "shock_bonus": 150,
+      "shock_min_quality_bps": 6000,
+      "o2_bps": 50,
+      "premium_bps": 50,
+      "noflow_burn_bps": 1,
+      "noflow_burn_blocks": 100,
+      "epi_dose": "1000000000000000000000000",
+      "death_burn_bps": 1000,
+      "max_deaths": 3,
+      "rosc_scars": 1,
+      "death_scars": 2,
+      "bounty_bps": 200,
+      "ef_start": 60,
+      "ef_step": 5,
+      "ef_floor": 20,
+      "units_compression": 1,
+      "units_breath": 5,
+      "units_shock": 15,
+      "units_call_code": 10,
+      "total_supply": "2500000000000000000000000000",
+      "cart_bps": 4000,
+      "faucet_amount": "1000000000000000000000000",
+      "min_rescuer_balance": "1000000000000000000000",
+      "post_mortem_transfers": false
+    }
+  },
+  "marks": [
+    {
+      "kind": "beat",
+      "block": 277371665,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277371720,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277371778,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277371836,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277371894,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277371949,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372006,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372065,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372128,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372186,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372246,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372305,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372366,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372427,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372482,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372536,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372591,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372645,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372699,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372753,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372812,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372871,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372936,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277372997,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373051,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373110,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373166,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373221,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373275,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373330,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373384,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373438,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373493,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373552,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373613,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373672,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373731,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373785,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373841,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373895,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277373951,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374010,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374068,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374128,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374184,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374237,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374291,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374345,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374398,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374456,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374518,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374576,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374635,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374692,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374748,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374811,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374870,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374929,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277374984,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277375038,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277375093,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277375148,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277375203,
+      "tag": 380709786,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277375257,
+      "tag": 896944877,
+      "paced": true,
+      "bot": true
+    }
+  ]
+}

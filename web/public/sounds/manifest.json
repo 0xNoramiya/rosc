@@ -1,0 +1,169 @@
+{
+  "made_with": "ElevenLabs sound generation API (POST /v1/sound-generation)",
+  "format": "MP3, mono, 44.1 kHz, 96 kbit/s",
+  "processing": "Leading silence trimmed, 2 ms fade in, fade out, levelled to a shared loudness with peaks at or under -1 dBFS. starts_at_ms is where the decoded file first passes -30 dB of its peak, attack_ms where it first passes -12 dB.",
+  "note": "MP3 encoders pad the start of a file. Decoders that read the LAME header (Chrome, Firefox, ffmpeg) skip the padding, which is how these numbers were measured; one that does not would start about 25 ms later.",
+  "sounds": [
+    {
+      "name": "woodblock",
+      "file": "woodblock.mp3",
+      "use": "One beat on the trace, and the metronome.",
+      "duration_ms": 200,
+      "starts_at_ms": 0.0,
+      "attack_ms": 1.3,
+      "peak_dbfs": -1.6,
+      "rms_dbfs": -13.8,
+      "bytes": 3179,
+      "prompt": "A single dry woodblock hit. One short percussive wooden tick, close microphone, clean, no reverb, no echo, nothing else.",
+      "settings": {
+        "model_id": "eleven_text_to_sound_v2",
+        "duration_seconds": 0.5,
+        "prompt_influence": 0.6,
+        "output_format": "mp3_44100_128"
+      },
+      "take": 1,
+      "takes_generated": 4
+    },
+    {
+      "name": "tuba",
+      "file": "tuba.mp3",
+      "use": "A compression that counted.",
+      "duration_ms": 400,
+      "starts_at_ms": 0.4,
+      "attack_ms": 4.2,
+      "peak_dbfs": -5.8,
+      "rms_dbfs": -15.4,
+      "bytes": 5687,
+      "prompt": "Tuba playing one short, fat, very low staccato note, a single oom, brass bass sample, dry, close.",
+      "settings": {
+        "model_id": "eleven_text_to_sound_v2",
+        "duration_seconds": 0.5,
+        "prompt_influence": 0.7,
+        "output_format": "mp3_44100_128"
+      },
+      "take": 3,
+      "takes_generated": 3
+    },
+    {
+      "name": "sour",
+      "file": "sour.mp3",
+      "use": "A press that missed.",
+      "duration_ms": 450,
+      "starts_at_ms": 0.1,
+      "attack_ms": 1.1,
+      "peak_dbfs": -7.6,
+      "rms_dbfs": -15.4,
+      "bytes": 6314,
+      "prompt": "Tuba playing one short wrong note that bends downward and wilts, pitch sliding down like it is deflating, comedic brass blooper, solo, dry.",
+      "settings": {
+        "model_id": "eleven_text_to_sound_v2",
+        "duration_seconds": 0.7,
+        "prompt_influence": 0.7,
+        "output_format": "mp3_44100_128"
+      },
+      "take": 3,
+      "takes_generated": 4
+    },
+    {
+      "name": "whistle",
+      "file": "whistle.mp3",
+      "use": "A breath that counted.",
+      "duration_ms": 620,
+      "starts_at_ms": 0.4,
+      "attack_ms": 112.3,
+      "peak_dbfs": -8.2,
+      "rms_dbfs": -17.5,
+      "bytes": 8195,
+      "prompt": "One upward glissando on a slide whistle, low to high in half a second, solo, dry, no reverb.",
+      "settings": {
+        "model_id": "eleven_text_to_sound_v2",
+        "duration_seconds": 0.7,
+        "prompt_influence": 0.8,
+        "output_format": "mp3_44100_128"
+      },
+      "take": 2,
+      "takes_generated": 2
+    },
+    {
+      "name": "flatline",
+      "file": "flatline.mp3",
+      "use": "The heart stops.",
+      "duration_ms": 1200,
+      "starts_at_ms": 0.2,
+      "attack_ms": 0.7,
+      "peak_dbfs": -10.1,
+      "rms_dbfs": -23.4,
+      "bytes": 15091,
+      "prompt": "A steady, continuous electronic tone at one constant pitch, a single unbroken high beep that does not change, like a monitor holding one note. No pulses, no other sound.",
+      "settings": {
+        "model_id": "eleven_text_to_sound_v2",
+        "duration_seconds": 1.5,
+        "prompt_influence": 0.7,
+        "output_format": "mp3_44100_128"
+      },
+      "take": 1,
+      "takes_generated": 2
+    },
+    {
+      "name": "trombone",
+      "file": "trombone.mp3",
+      "use": "After the flatline tone, on an arrest.",
+      "duration_ms": 2901,
+      "starts_at_ms": 0.3,
+      "attack_ms": 170.5,
+      "peak_dbfs": -5.7,
+      "rms_dbfs": -17.4,
+      "bytes": 35780,
+      "prompt": "A slow sad trombone, comedic: three descending notes and then one long drooping last note, wah wah wah waaah. Solo trombone, dry, no audience, no other instruments.",
+      "settings": {
+        "model_id": "eleven_text_to_sound_v2",
+        "duration_seconds": 3.0,
+        "prompt_influence": 0.6,
+        "output_format": "mp3_44100_128"
+      },
+      "take": 1,
+      "takes_generated": 2
+    },
+    {
+      "name": "balloon",
+      "file": "balloon.mp3",
+      "use": "Time of death.",
+      "duration_ms": 2600,
+      "starts_at_ms": 0.5,
+      "attack_ms": 6.2,
+      "peak_dbfs": -4.1,
+      "rms_dbfs": -17.4,
+      "bytes": 32018,
+      "prompt": "A rubber balloon being let go: air squealing and sputtering out as it flies away and deflates for about one and a half seconds, then a short silence, then a single clear triangle ding.",
+      "settings": {
+        "model_id": "eleven_text_to_sound_v2",
+        "duration_seconds": 3.0,
+        "prompt_influence": 0.6,
+        "output_format": "mp3_44100_128"
+      },
+      "take": 1,
+      "takes_generated": 2
+    },
+    {
+      "name": "fanfare",
+      "file": "fanfare.mp3",
+      "use": "Return of spontaneous circulation.",
+      "duration_ms": 1250,
+      "starts_at_ms": 0.5,
+      "attack_ms": 3.5,
+      "peak_dbfs": -6.2,
+      "rms_dbfs": -17.5,
+      "bytes": 15718,
+      "prompt": "A kazoo plays ta-da: one short note, then a second, higher, longer note. Two notes only, bright and proud, solo kazoo, dry.",
+      "settings": {
+        "model_id": "eleven_text_to_sound_v2",
+        "duration_seconds": 1.5,
+        "prompt_influence": 0.7,
+        "output_format": "mp3_44100_128"
+      },
+      "take": 7,
+      "takes_generated": 8,
+      "assembled": "The generator would not play a tune, only held notes. This call is four notes cut from the one generated kazoo note of take 7 and re-pitched to a rising major arpeggio (ratios 1, 5/4, 3/2, 2), 150 ms apart, the last one held. The 150 ms spacing is a quarter of a 600 ms block."
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+node bots/demo.mjs
+Code Blue ($ROSC): demo on NEAR testnet
+deploying testnet-headstone: demo preset with {"no_flow_max_blocks":60,"lazarus_blocks":20}
+  asking the testnet faucet for rosc-9e2af2.testnet
+  rosc-9e2af2.testnet holds 10 NEAR
+  deployed and initialised at block 277364950: https://testnet.nearblocks.io/txns/AVwvx2U8xx7F2DH3z4ARmkFdRfeXP1uwFW5LJxaQY6ic
+  created 2 bot accounts
+  2 bots registered; 2 claimed 1,000,000 ROSC each
+  rosc-9e2af2.testnet has no access keys: https://testnet.nearblocks.io/txns/3tFTYBgXgsNi9ycitGngVDw9SaQaTQ6feXJVaQchPA8E
+  wrote deployments/testnet-headstone.json
+deploying testnet-demo: demo preset
+  asking the testnet faucet for rosc-99c099.testnet
+  rosc-99c099.testnet holds 10 NEAR
+  deployed and initialised at block 277364990: https://testnet.nearblocks.io/txns/2uXwEcYvkeWH8A4L5ki8Rr1eo23m8rP1nKEUxFdz3yji
+  created 8 bot accounts
+  8 bots registered; 8 claimed 1,000,000 ROSC each
+  rosc-99c099.testnet has no access keys: https://testnet.nearblocks.io/txns/gx1qJ5iCU9vBxQHKcvQA4tanKSpPTixFxjQyGCD4cuL
+  wrote deployments/testnet-demo.json
+
+coin rosc-99c099.testnet  https://testnet.nearblocks.io/address/rosc-99c099.testnet
+one block every 595 ms; the coin is alive, 99 blocks from arrest
+
+1. Holder bots run: sinus rhythm, oxygen burn ticking
+   ok  the coin has a pulse
+   beat  bot-holder-1 -> bot-holder-2  5 ROSC  https://testnet.nearblocks.io/txns/6vqhYzXwTxa6y4KMcvq4pZaYcY6h1zwQUkntZy9tUdZ1
+   beat  bot-holder-2 -> bot-holder-4  42 ROSC  https://testnet.nearblocks.io/txns/JCe862fojWrpmzz7mPtUwjqqqXBNC7JTFDV1FJUha1do
+   beat  bot-holder-3 -> bot-holder-2  23 ROSC  https://testnet.nearblocks.io/txns/DDBnZMajEsEr3kpotqmdCyRuYdPJwvmtBnbP1mech5CZ
+   beat  bot-holder-4 -> bot-holder-1  60 ROSC  https://testnet.nearblocks.io/txns/AG8H8xv7Yrz41RNMWuxKUk7RcSzetkMkzrbFMbEPmmXR
+   beat  bot-holder-1 -> bot-holder-3  41 ROSC  https://testnet.nearblocks.io/txns/5rZw5yLhCw7qHZ6SquPjh1NnewHtMEcRAnuNt3sAcc8a
+   beat  bot-holder-2 -> bot-holder-1  22 ROSC  https://testnet.nearblocks.io/txns/EYGp44YWdERyAadj4BkfCcBbqDKryv8hD1Krs7xgWHyi
+   beat  bot-holder-3 -> bot-holder-4  59 ROSC  https://testnet.nearblocks.io/txns/CipRKYEaSLGxCWgtuHxnfgDNp9DTzsdFRddPoh2URtyH
+   beat  bot-holder-4 -> bot-holder-2  40 ROSC  https://testnet.nearblocks.io/txns/8iZzpyuS1AUv6xQEYt2huur9urt4bvntAzsAq55GbLJY
+   ok  8 transfers, 8 of them beats on the monitor's trace
+   ok  4 different senders: a sinus rhythm, not a paced one
+   ok  oxygen burn: supply fell by 1.46 ROSC, to 2,499,999,998.53
+
+2. A transfer from one more wallet lands as a beat on the trace
+   bot-pacer sent 42 ROSC in block 277365123: https://testnet.nearblocks.io/txns/9EycLUrA7C5kGjGticrT1R3q2JxUQ2GQmDAugzqqUpf
+   ok  the trace has a beat at block 277365123 tagged 380709786
+   ok  it reset the arrest clock
+
+3. The bots stop. The countdown runs out
+   100 blocks of silence stop the heart: about 59 s
+[pager] BRADYCARDIA on rosc-99c099.testnet. No beat for 51 blocks. Arrest in 50 blocks, about 30 s, unless someone transfers.
+[pager] CODE BLUE on rosc-99c099.testnet. No pulse since block 277365224. Rhythm: asystole. Start compressions: http://localhost:5173/?contract=rosc-99c099.testnet#code
+   ok  arrest at block 277365224, 100 blocks after the last beat, with no call from anyone
+   a transfer now fails: https://testnet.nearblocks.io/txns/Fw6yhtkumD1VRwMH8fezz4edNe2yA94JCYBrfuRyZD1V
+   the chain says: Smart contract panicked: No pulse. Tokens cannot circulate without circulation. Start compressions.
+   ok  refused with the no-pulse message
+
+4. The pager posts CODE BLUE
+   bradycardia: BRADYCARDIA on rosc-99c099.testnet. No beat for 51 blocks. Arrest in 50 blocks, about 30 s, unless someone transfers.
+   code_blue: CODE BLUE on rosc-99c099.testnet. No pulse since block 277365224. Rhythm: asystole. Start compressions: http://localhost:5173/?contract=rosc-99c099.testnet#code
+   ok  it warned at half the window
+   ok  it posted CODE BLUE with the rhythm and a link to the code screen
+
+5. The rescue bots run the code
+   bot-compressor called the code: asystole  https://testnet.nearblocks.io/txns/GLfyR5c9vbB7SJ9QkVX57ytTD3vqU7y8e4cNN1oiNR13
+   ok  the recorded rhythm matches the monitor
+
+6. A shock on a flatline is refused
+   https://testnet.nearblocks.io/txns/2txx5TFDYrdotKftH7gAZ4h9mWx8HsBXfPQJWiWFr3yT
+   the chain says: Smart contract panicked: Not a shockable rhythm. Resume compressions.
+   ok  refused with the not-shockable message
+   30 compressions on the metronome, two breaths from the second account, a rhythm check
+  round 1: perfusion 0 of 201.5, rhythm asystole
+  round 2: perfusion 93.83 of 202, rhythm asystole
+[pager] ROSC on rosc-99c099.testnet. Pulse back after 194 blocks, about 115 s, in 2 rounds. Bounty 19,979,600.03 ROSC to 2 rescuers.
+
+7. ROSC
+   ok  return of spontaneous circulation at block 277365418
+   a transfer went through: https://testnet.nearblocks.io/txns/JBFcU2Tt1AenKL48qW5c26vSLiX7nPoRbmu27ujeLG8A
+   ok  transfers work again
+   bot-compressor claimed 10,577,435.31 ROSC  https://testnet.nearblocks.io/txns/FDn9RXvuR7c7nkK6hBfSP4h7yJhGcPE2x2XAj1w4AXRL
+   bot-airway claimed 9,402,164.72 ROSC  https://testnet.nearblocks.io/txns/5osX6XVsqKnszyEkTSidh5V8APdWzZ1SVMALCzpDxhnB
+   ok  the code sheet is on file
+   code 1: asystole at block 277365224, ended at block 277365418
+     downtime 194 blocks, 20 of them before the first compression
+     outcome Rosc: perfusion 226.03 against a target of 202
+     round 1: quality 93.8%, lead bot-compressor, perfusion 93.83
+     round 2: quality 82.2%, lead bot-airway, epinephrine, perfusion 226.03
+     work units: bot-compressor 90, bot-airway 80
+     bounty 19,979,600.03 ROSC: bot-compressor 10,577,435.31, bot-airway 9,402,164.72
+     burned from the cart: no-flow 20,000, epinephrine 1,000,000
+   ok  the bounty of 19,979,600.03 ROSC is split by work units
+   ok  both rescuers claimed exactly their share
+   120 of 145 presses counted (12 landed in a block that already had one, 8 during a window, 5 lost or refused)
+   30 compressions in 33 blocks (277365244 to 277365276)
+   30 compressions in 31 blocks (277365285 to 277365315)
+   30 compressions in 37 blocks (277365324 to 277365360)
+   30 compressions in 36 blocks (277365373 to 277365408)
+   ok  4 cycles of 30 compressions and 8 breaths landed
+   pager: ROSC on rosc-99c099.testnet. Pulse back after 194 blocks, about 115 s, in 2 rounds. Bounty 19,979,600.03 ROSC to 2 rescuers.
+   ok  the pager posted the ROSC
+
+8. The second deployment: nobody answers three codes
+   coin rosc-9e2af2.testnet  https://testnet.nearblocks.io/address/rosc-9e2af2.testnet
+   Demo preset with a shortened life, so three unanswered codes take about three minutes: NO_FLOW_MAX_BLOCKS 60 instead of 1,000 and LAZARUS_BLOCKS 20 instead of 50.
+   the coin is deceased since block 277365274
+   ok  the monitor shows 3 deaths and an empty cart, with no call from anyone
+   bot-holder-1 called it: https://testnet.nearblocks.io/txns/Gr37ucmUxdH4FN9afqjJ9TZVa6DK6diCwUdpHSFgfACt
+   ok  one call wrote all 3 deaths
+   ok  the log has the deceased event and the estate burn
+   code 1: asystole at block 277365051, ended at block 277365112
+     downtime 61 blocks, no compression ever landed
+     outcome death (NoFlow): perfusion 0 against a target of 0
+     burned from the cart: time of death 100,000,000
+   code 2: asystole at block 277365132, ended at block 277365193
+     downtime 61 blocks, no compression ever landed
+     outcome death (NoFlow): perfusion 0 against a target of 0
+     burned from the cart: time of death 90,000,000
+   code 3: asystole at block 277365213, ended at block 277365274
+     downtime 61 blocks, no compression ever landed
+     outcome death (NoFlow): perfusion 0 against a target of 0
+     burned from the cart: time of death 81,000,000
+   ok  three code sheets, and no compression on any of them
+   supply 2,500,000,000 at launch, 1,500,000,000 now; 729,000,000 burned as the estate
+
+9. Every later call fails with the time of death
+   compress           Time of death was called at block 277365274.
+   ok  compress is refused
+   breathe            Time of death was called at block 277365274.
+   ok  breathe is refused
+   shock              Time of death was called at block 277365274.
+   ok  shock is refused
+   push_epi           Time of death was called at block 277365274.
+   ok  push_epi is refused
+   call_code          Time of death was called at block 277365274.
+   ok  call_code is refused
+   call_time_of_death Time of death was called at block 277365274.
+   ok  call_time_of_death is refused
+   claim_bounty       Time of death was called at block 277365274.
+   ok  claim_bounty is refused
+   faucet_claim       Time of death was called at block 277365274.
+   ok  faucet_claim is refused
+   ft_transfer        Time of death was called at block 277365274.
+   ok  ft_transfer is refused
+   the chain says: Smart contract panicked: Time of death was called at block 277365274.  https://testnet.nearblocks.io/txns/CfC2hEFg5HjTRNHCa7FPovM9ujHPmFL6v5r9SN8hCGAY
+
+Done in 326 s: 32 checks passed.
+demo coin       rosc-99c099.testnet
+headstone coin  rosc-9e2af2.testnet
+gas: compress 2.494 Tgas counted, breathe 2.514, transfer 4.386, claim 3.603
+landing: 120 of 145 presses counted; 30 compressions took 33, 31, 37, 36 blocks
+a full code cost the compressor 0.017163 NEAR
+173 events in bots/out/events.json; gas in bots/out/gas.json
+the pacemaker sent 2 beats and has now stopped: the demo coin arrests 100 blocks after its last beat. `make pacer` keeps it alive.
+exit: 0

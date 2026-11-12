@@ -1,0 +1,5 @@
+goal,target,measured,verdict
+A healthy coin has zero arrests in 60 days,100% of runs,86.0% of runs,fail
+A fading coin's median death falls between day 20 and day 50,day 20 to 50,day 28,pass
+A realistic pair needs 4 to 12 minutes for a save,4 to 12 min,4.3 min with no scars; 10.7 min with 5 scars,pass
+A serial rescuer takes under 25% of the cart,under 25%,17.9% (worst run 17.9%),pass

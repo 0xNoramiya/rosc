@@ -1,0 +1,18 @@
+target/
+node_modules/
+dist/
+*.wasm
+.env
+.env.*
+*.key.json
+.near-credentials/
+neardev/
+.DS_Store
+
+# Built or copied at build time
+web/public/deployments.json
+web/public/sim/
+web/test-results/
+web/playwright-report/
+# Keys never go in the repo
+bots/.keys/
