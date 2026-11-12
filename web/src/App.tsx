@@ -281,7 +281,7 @@ export default function App() {
       </main>
 
       <div className="below">
-        {contract && monitor && <Bedside rescuer={rescuer} chart={chart} minBalance={monitor.config.min_rescuer_balance} alive={status === 'alive'} />}
+        {contract && monitor && <Bedside rescuer={rescuer} chart={chart} minBalance={monitor.config.min_rescuer_balance} status={status ?? 'alive'} />}
         <CprCard />
       </div>
 

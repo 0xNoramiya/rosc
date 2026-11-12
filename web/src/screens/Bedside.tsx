@@ -1,6 +1,8 @@
 // Who is here and whether the page can press for them.
 import { useState } from 'react';
 import type { Rescuer } from '../chain/rescuer';
+import { refusal } from '../chain/sender';
+import type { StatusName } from '../chain/types';
 import { rosc, short, toUnits } from '../lib/format';
 
 export interface Chart {
@@ -14,12 +16,14 @@ interface Props {
   rescuer: Rescuer;
   chart: Chart;
   minBalance: string;
-  alive: boolean;
+  status: StatusName;
 }
 
-export function Bedside({ rescuer, chart, minBalance, alive }: Props) {
+export function Bedside({ rescuer, chart, minBalance, status }: Props) {
   const [to, setTo] = useState('');
   const [amount, setAmount] = useState('10');
+  // What became of the last transfer sent from here: the chain's own answer.
+  const [sent, setSent] = useState<{ ok: boolean; text: string } | null>(null);
   const [localId, setLocalId] = useState('');
   const [localKey, setLocalKey] = useState('');
   const eligible = BigInt(chart.balance) >= BigInt(minBalance);
@@ -84,17 +88,30 @@ export function Bedside({ rescuer, chart, minBalance, alive }: Props) {
         </p>
       )}
 
-      {rescuer.accountId && alive && (
+      {/* The form stays through an arrest: a transfer then is refused, and the page shows the chain saying so. */}
+      {rescuer.accountId && status !== 'deceased' && (
         <form
           className="beat-form"
           onSubmit={event => {
             event.preventDefault();
-            if (rescuer.sender && !rescuer.walletAccountId) rescuer.sender.send('ft_transfer', { receiver_id: to.trim(), amount: toUnits(amount) }, 1n);
-            else rescuer.transfer(to.trim(), toUnits(amount));
+            const receiver = to.trim();
+            setSent(null);
+            const done =
+              rescuer.sender && !rescuer.walletAccountId
+                ? rescuer.sender.send('ft_transfer', { receiver_id: receiver, amount: toUnits(amount) }, 1n).then(s => s.result)
+                : rescuer.transfer(receiver, toUnits(amount));
+            Promise.resolve(done).then(
+              () => setSent({ ok: true, text: `Sent ${amount} ROSC to ${short(receiver)}.` }),
+              error => setSent({ ok: false, text: refusal(error) }),
+            );
           }}
         >
           <h3>Send a beat</h3>
-          <p className="note">A transfer between two accounts is a heartbeat. You pay 0.5% oxygen burn and 0.5% to the crash cart on top.</p>
+          <p className="note">
+            {status === 'alive'
+              ? 'A transfer between two accounts is a heartbeat. You pay 0.5% oxygen burn and 0.5% to the crash cart on top.'
+              : 'The heart has stopped. The chain refuses every transfer until someone brings it back.'}
+          </p>
           <label htmlFor="beat-to">To</label>
           <input id="beat-to" value={to} onChange={e => setTo(e.target.value)} placeholder="someone.testnet" autoComplete="off" spellCheck={false} required />
           <label htmlFor="beat-amount">ROSC</label>
@@ -102,6 +119,11 @@ export function Bedside({ rescuer, chart, minBalance, alive }: Props) {
           <button type="submit" className="primary">
             Transfer
           </button>
+          {sent && (
+            <p className={`note beat-answer${sent.ok ? '' : ' is-alarm'}`} role="status">
+              {sent.text}
+            </p>
+          )}
         </form>
       )}
 

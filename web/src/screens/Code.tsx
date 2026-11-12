@@ -107,6 +107,22 @@ export function CodeScreen({ monitor, blockMs, rescuer, sheet, sheetDue = false,
   const status = statusName(monitor.status);
   const code = monitor.code;
   const frozen = status === 'deceased' && !monitor.config.post_mortem_transfers;
+  // The moment the pulse comes back the code's numbers leave the monitor. The
+  // bar stays a few seconds longer, full: ROSC is only ever declared at or
+  // above the target.
+  const lastTarget = useRef<number | null>(null);
+  if (code) lastTarget.current = code.target;
+  const wasArrest = useRef(status === 'arrest');
+  const [backAt, setBackAt] = useState<number | null>(null);
+  useEffect(() => {
+    if (wasArrest.current && status === 'alive') setBackAt(Date.now());
+    wasArrest.current = status === 'arrest';
+  }, [status]);
+  useEffect(() => {
+    if (backAt === null) return;
+    const timer = setTimeout(() => setBackAt(null), 8000);
+    return () => clearTimeout(timer);
+  }, [backAt]);
   const me = rescuer.accountId;
   const phase = code ? phaseName(code.phase) : null;
   const sender = rescuer.sender;
@@ -260,6 +276,15 @@ export function CodeScreen({ monitor, blockMs, rescuer, sheet, sheetDue = false,
             <span className="perfusion-text">
               Perfusion {points(code.perfusion)} of {points(code.target)} needed for ROSC
             </span>
+          </div>
+        </div>
+      )}
+
+      {!code && status === 'alive' && backAt !== null && lastTarget.current !== null && (
+        <div className="code-numbers">
+          <div className="perfusion" role="meter" aria-valuemin={0} aria-valuemax={lastTarget.current} aria-valuenow={lastTarget.current} aria-label="Perfusion against the target">
+            <div className="perfusion-fill" style={{ width: '100%' }} />
+            <span className="perfusion-text">Perfusion reached the {points(lastTarget.current)} needed. Return of spontaneous circulation.</span>
           </div>
         </div>
       )}
