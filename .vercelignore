@@ -1,0 +1,14 @@
+# The hosted page is built from web/, with the coin list in deployments/ and
+# the simulator's charts and files in sim/. Nothing else is uploaded.
+/*
+!/vercel.json
+!/web
+!/sim
+!/deployments
+web/node_modules
+web/dist
+web/test-results
+web/playwright-report
+sim/target
+sim/src
+sim/Cargo.toml

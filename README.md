@@ -1,3 +1,5 @@
+<a href="https://rosc-eight.vercel.app"><img src="docs/img/banner.jpg" alt="The Code Blue page: a clay coin sitting up in a hospital bed beside a paper strip showing a paced rhythm, 60% ejection fraction and 0 of 3 deaths." width="100%"></a>
+
 # Code Blue ($ROSC)
 
 Code Blue is a memecoin with a pulse. Every transfer is a heartbeat; when
@@ -9,12 +11,42 @@ with the time of death on it.
 It is a testnet toy for the NEAR HACKATHON memecoins track. It is not an
 investment, not a medical device and not CPR training.
 
+**Open the page:** <https://rosc-eight.vercel.app>. It reads the testnet coins
+listed in [`deployments/`](deployments). Those run the demo preset, where a
+minute of silence stops the heart, so a coin nobody is transacting on will be
+in arrest or under a headstone when you look. `make demo` deploys fresh ones.
+
 **The limits, up front.** The mechanic does not resist one determined person
 with several accounts. One bot can keep the coin alive for 4 ROSC a day, one
 person with two keys can run a whole code, and a serial rescuer can take 17.9%
 of the crash cart before the coin becomes unsaveable. The
 [abuse table](#how-it-can-be-abused) says what each of those costs and what
 the design does about it.
+
+## What it looks like
+
+Every picture here is the page itself, on testnet, on 12 Nov 2026. The banner
+above is [`rosc-99c099.testnet`](https://testnet.nearblocks.io/address/rosc-99c099.testnet),
+kept alive by a pacer bot, which is why its rhythm reads "Paced".
+
+![The ward during a code: gloved clay hands press the coin flat on its bed, once per block, while the strip reads asystole.](docs/img/cpr.gif)
+
+A code on [`rosc-aafc38.testnet`](https://testnet.nearblocks.io/address/rosc-aafc38.testnet),
+in real time: one press per block, sent from the keyboard with a key the page
+holds, so there is no wallet prompt. This was the coin's third arrest and
+it had gone 809 blocks with nobody at the bedside, so the save took six
+rounds.
+
+| | |
+| --- | --- |
+| ![The code screen in round 1: 17 of 30 compressions, ETCO2 85, perfusion 0 of 430.9, and a row of twenty counted presses.](docs/img/code.jpg) | ![The code sheet for that save: six rounds with their quality, the epinephrine doses, and a bounty of 13.2M ROSC to the one rescuer.](docs/img/sheet.jpg) |
+| The code screen. Each square is a press the chain counted. | The sheet the chain wrote when the pulse came back. |
+
+![A grey clay headstone lettered Code Blue $ROSC with one flower, beside a slip giving the time of death as block 277,365,274.](docs/img/headstone.jpg)
+
+[`rosc-9e2af2.testnet`](https://testnet.nearblocks.io/address/rosc-9e2af2.testnet)
+died three times with nobody at the bedside. This is all its page will ever
+show.
 
 ## See it work
 

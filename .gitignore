@@ -16,3 +16,4 @@ web/test-results/
 web/playwright-report/
 # Keys never go in the repo
 bots/.keys/
+.vercel
