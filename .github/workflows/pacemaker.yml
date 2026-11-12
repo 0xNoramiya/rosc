@@ -1,0 +1,47 @@
+# The pacemaker for the hosted page's coin (deployments/testnet-live.json).
+#
+# That coin runs the live preset: twelve hours without a transfer stops its
+# heart. Nobody is trading a testnet toy, so this job sends one small transfer
+# between two bot wallets every three hours. It is the "pacemaker bot" from
+# the README's abuse table, and the monitor labels the rhythm "Paced".
+#
+# If the heart has already stopped the transfer is refused and the job fails:
+# a pacemaker cannot restart it. Someone has to do CPR on the page.
+name: Pacemaker
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pacemaker
+  cancel-in-progress: false
+
+jobs:
+  beat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: bots/package-lock.json
+      - run: npm ci
+        working-directory: bots
+      - name: Put the two bot keys where the bots look for them
+        env:
+          PACER_KEYS: ${{ secrets.PACER_KEYS }}
+        run: |
+          mkdir -p bots/.keys && chmod 700 bots/.keys
+          node -e '
+            const fs = require("fs");
+            for (const key of JSON.parse(process.env.PACER_KEYS))
+              fs.writeFileSync(`bots/.keys/${key.account_id}.json`, JSON.stringify(key), { mode: 0o600 });
+          '
+      - run: node bots/pacer.mjs testnet-live --once

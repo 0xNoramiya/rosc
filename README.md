@@ -11,10 +11,13 @@ with the time of death on it.
 It is a testnet toy for the NEAR HACKATHON memecoins track. It is not an
 investment, not a medical device and not CPR training.
 
-**Open the page:** <https://rosc-eight.vercel.app>. It reads the testnet coins
-listed in [`deployments/`](deployments). Those run the demo preset, where a
-minute of silence stops the heart, so a coin nobody is transacting on will be
-in arrest or under a headstone when you look. `make demo` deploys fresh ones.
+**Open the page:** <https://rosc-eight.vercel.app>. It opens on
+`testnet-live`, a coin on the live preset. Nobody trades a testnet toy, so a
+[scheduled job](.github/workflows/pacemaker.yml) sends one transfer between
+two bot wallets every three hours, and the monitor calls that rhythm "Paced",
+which is what it is. The other coins in the picker ran the demo preset, where
+a minute of silence stops the heart, so expect them in arrest or under a
+headstone. `make demo` deploys fresh ones.
 
 **The limits, up front.** The mechanic does not resist one determined person
 with several accounts. One bot can keep the coin alive for 4 ROSC a day, one

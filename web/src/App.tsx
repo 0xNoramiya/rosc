@@ -67,7 +67,9 @@ export default function App() {
     const known = deployments.find(d => d.name === wanted || d.contract === wanted);
     if (known) return known;
     if (wanted?.includes('.')) return { name: wanted, contract: wanted };
-    return deployments[0] ?? null;
+    // With nothing asked for, open on a coin left to run rather than a demo
+    // coin, which lives for minutes.
+    return deployments.find(d => d.preset === 'live') ?? deployments[0] ?? null;
   }, [deployments, wanted]);
   const contract = deployment?.contract ?? null;
   const rpc = query.get('rpc') ?? READ_RPCS[0];
@@ -288,6 +290,7 @@ export default function App() {
           Testnet toy. Not an investment, not a medical device, not CPR training. "Time of death" and "deceased" on this page describe a token. The contract has no owner and no
           upgrade path; if it dies three times its transfers stay frozen.
         </p>
+        <p>The patient was made with Higgsfield and the band with ElevenLabs.</p>
       </footer>
     </div>
   );

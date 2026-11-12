@@ -34,6 +34,8 @@ const TEAMS = {
     ["bot-pacer", 0.3], ["bot-pacer-2", 0.3], ["bot-compressor", 1.2], ["bot-airway", 0.8],
   ],
   minimal: [["bot-holder-1", 0.4], ["bot-holder-2", 0.4]],
+  // Two wallets and nothing else: a coin kept going by a pacemaker.
+  paced: [["bot-pacer", 0.3], ["bot-pacer-2", 0.3]],
 };
 
 const log = (...a) => console.log(...a);
@@ -210,7 +212,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const team = flag("bots", "full");
   const name = args.shift();
   if (!name || !TEAMS[team]) {
-    console.error("usage: node bots/deploy.mjs <name> [--preset demo|live] [--bots full|minimal] [key=value ...]");
+    console.error("usage: node bots/deploy.mjs <name> [--preset demo|live] [--bots full|minimal|paced] [key=value ...]");
     process.exit(2);
   }
   const overrides = Object.fromEntries(args.map((pair) => pair.split("=")));
