@@ -123,7 +123,7 @@ The coins it left on testnet, both running the wasm with sha256
 
 | Deployment | Contract | State |
 | --- | --- | --- |
-| [`deployments/testnet-demo.json`](deployments/testnet-demo.json) | [`rosc-99c099.testnet`](https://testnet.nearblocks.io/address/rosc-99c099.testnet) | Alive, saved once |
+| [`deployments/testnet-demo.json`](deployments/testnet-demo.json) | [`rosc-99c099.testnet`](https://testnet.nearblocks.io/address/rosc-99c099.testnet) | Saved once, then deceased at block 277417022 after its pacer stopped |
 | [`deployments/testnet-headstone.json`](deployments/testnet-headstone.json) | [`rosc-9e2af2.testnet`](https://testnet.nearblocks.io/address/rosc-9e2af2.testnet) | Deceased at block 277365274 |
 
 A demo-preset coin arrests one minute after its last beat and is dead for good

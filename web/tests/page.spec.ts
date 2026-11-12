@@ -1,7 +1,7 @@
 // The page's acceptance list, against testnet.
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -17,16 +17,16 @@ async function ready(page: Page) {
   await page.waitForFunction(() => (window as any).codeblue?.monitor, null, { timeout: 60_000 });
 }
 
+// Against testnet-live, the one coin on file that stays alive: a scheduled
+// pacemaker beats it. A demo-preset coin is dead half an hour after its pacer
+// stops, and a dead coin has a headstone where the trace was.
 test('the trace matches the beat ring', async ({ page }) => {
-  await page.goto('/?coin=testnet-demo#monitor');
+  await page.goto('/?coin=testnet-live#monitor');
   await ready(page);
   const { monitor, reading } = await chain(page);
   const drawn = reading.marks.filter((m: any) => m.kind === 'beat').map((m: any) => [m.block, m.tag]);
   expect(drawn).toEqual(monitor.beats.map((b: any) => [b.block, b.tag]));
   expect(monitor.beats.length).toBeGreaterThan(0);
-  // Kept as the recorded session the README points to.
-  mkdirSync(join(here, 'recorded'), { recursive: true });
-  writeFileSync(join(here, 'recorded/monitor.json'), JSON.stringify({ monitor, marks: reading.marks }, null, 2));
   await expect(page.locator('canvas.ecg')).toHaveAttribute('aria-label', new RegExp(`${monitor.beats.length} beats in the ring`));
 });
 
