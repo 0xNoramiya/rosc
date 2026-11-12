@@ -37,7 +37,8 @@ export function moodOf(monitor: Monitor, reading: Reading): Mood {
 
 /// A press on the page squashes the coin at once, before the chain has
 /// answered. Compressions the chain reports from other rescuers do the same.
-function usePresses(chain: string): number {
+/// `chain` is the block of the newest compression the chain has counted.
+function usePresses(chain: number): number {
   const [count, setCount] = useState(0);
   const mine = useRef(0);
   useEffect(() => {
@@ -48,12 +49,14 @@ function usePresses(chain: string): number {
     window.addEventListener('codeblue:press', onPress);
     return () => window.removeEventListener('codeblue:press', onPress);
   }, []);
-  // What the chain already showed when the page opened is not a new press.
+  // What the chain already showed when the page opened is not a new press,
+  // and neither is a code opening or ending: only a compression in a later
+  // block is.
   const seen = useRef(chain);
   useEffect(() => {
-    if (seen.current === chain) return;
+    const later = chain > seen.current;
     seen.current = chain;
-    if (performance.now() - mine.current > 2500) setCount(c => c + 1);
+    if (later && performance.now() - mine.current > 2500) setCount(c => c + 1);
   }, [chain]);
   return count;
 }
@@ -65,7 +68,10 @@ interface Props {
   taking?: boolean;
 }
 
-const pressKey = (monitor: Monitor) => `${monitor.code?.code_no ?? 0}-${monitor.code?.last_compression_block ?? 0}-${monitor.code?.cycle_compressions ?? 0}`;
+/// The block of the newest counted compression, or 0 when there is none yet.
+/// A code opens with its arrest block in last_compression_block, so that
+/// field only counts once the first compression is in.
+const lastCompression = (monitor: Monitor) => (monitor.code?.first_compression_block != null ? monitor.code.last_compression_block : 0);
 /// How far the arrest clock has run: 0 just after a beat, 1 at the arrest.
 const silenceOf = (monitor: Monitor) => Math.min(1, Math.max(0, (monitor.block - monitor.last_beat_block) / monitor.config.arrest_blocks));
 
@@ -116,7 +122,7 @@ function ClayPatient({ monitor, reading, taking = false, onBroken }: Props & { o
   const { style } = useLook();
   const mood = moodOf(monitor, reading);
   const code = monitor.code;
-  const presses = usePresses(pressKey(monitor));
+  const presses = usePresses(lastCompression(monitor));
   const working = mood === 'flat' || mood === 'vf';
   const sitting = !working && mood !== 'morgue';
   const silence = silenceOf(monitor);
@@ -178,7 +184,7 @@ function ClayPatient({ monitor, reading, taking = false, onBroken }: Props & { o
 function DrawnPatient({ monitor, reading, taking = false }: Props) {
   const mood = moodOf(monitor, reading);
   const code = monitor.code;
-  const presses = usePresses(pressKey(monitor));
+  const presses = usePresses(lastCompression(monitor));
   // Eyelids: open after a beat, closing as the silence grows.
   const lid = mood === 'well' || mood === 'paced' || mood === 'drowsy' ? 6 + silenceOf(monitor) * 22 : 0;
   const scars = Math.min(monitor.scars, PLASTERS.length);

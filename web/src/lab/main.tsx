@@ -23,6 +23,7 @@ const STATES = {
   well: 'Alive, busy',
   drowsy: 'Alive, nodding off',
   paced: 'Alive, paced by a bot',
+  waiting: 'Arrest: nobody on the chest yet',
   flat: 'Arrest: asystole, CPR running',
   vf: 'Arrest: VF',
   morgue: 'Morgue',
@@ -40,7 +41,7 @@ function fixture(state: State, block: number): Monitor {
   const monitor: Monitor = { ...base, block, config, status: { Alive: { arrest_block: block + 60 } }, code: null, scars: 2, deaths: 1, ejection_fraction: 50, beats: [], buckets: [] };
   const every = state === 'paced' ? 22 : state === 'drowsy' ? 70 : 11;
   const tags = state === 'paced' ? [7, 8] : [1, 2, 3, 4, 5];
-  const silent = state === 'flat' || state === 'vf' ? 150 : state === 'morgue' || state === 'deceased' ? 400 : 0;
+  const silent = state === 'waiting' ? 110 : state === 'flat' || state === 'vf' ? 150 : state === 'morgue' || state === 'deceased' ? 400 : 0;
   const lastBeat = Math.floor((block - silent - (state === 'drowsy' ? 62 : 0)) / every) * every;
   for (let b = lastBeat - every * 8; b <= lastBeat; b += every) monitor.beats.push({ block: b, tag: tags[Math.abs(Math.floor(b / every)) % tags.length] });
   monitor.last_beat_block = lastBeat;
@@ -85,6 +86,10 @@ function fixture(state: State, block: number): Monitor {
     etco2_bps: 9300,
     units: [['bot-compressor.rosc.testnet', 60]],
   };
+  // A code as the chain opens it: no compression yet, and the arrest block
+  // standing in last_compression_block.
+  if (state === 'waiting')
+    monitor.code = { ...monitor.code, called: false, first_compression_block: null, last_compression_block: arrest, round: 1, cycle: 1, phase: 'Compressions', cycle_compressions: 0, cycle_breaths: 0, perfusion: 0, units: [] };
   return monitor;
 }
 
