@@ -93,6 +93,12 @@ export function CodeScreen({ monitor, blockMs, rescuer, sheet, sheetDue = false,
   const [sound, setSound] = useState(false);
   const [said, setSaid] = useState<string | null>(null);
   const [lastHash, setLastHash] = useState<string | null>(null);
+  // The amount just claimed. The page learns the new balance a few blocks
+  // later; until then the button for the same bounty stays away.
+  const [claimed, setClaimed] = useState<string | null>(null);
+  useEffect(() => {
+    if (BigInt(claimable) === 0n) setClaimed(null);
+  }, [claimable]);
   const usedDevice = useRef(false);
   const nextId = useRef(1);
   const blockRef = useRef(monitor.block);
@@ -100,6 +106,7 @@ export function CodeScreen({ monitor, blockMs, rescuer, sheet, sheetDue = false,
 
   const status = statusName(monitor.status);
   const code = monitor.code;
+  const frozen = status === 'deceased' && !monitor.config.post_mortem_transfers;
   const me = rescuer.accountId;
   const phase = code ? phaseName(code.phase) : null;
   const sender = rescuer.sender;
@@ -321,8 +328,27 @@ export function CodeScreen({ monitor, blockMs, rescuer, sheet, sheetDue = false,
         </p>
       )}
       {status !== 'arrest' && !sheetDue && sheet && <Sheet sheet={sheet} blockMs={blockMs} me={me} device={usedDevice.current} />}
-      {BigInt(claimable) > 0n && (
-        <button type="button" className="pad pad-claim" onClick={() => sender?.send('claim_bounty').then(s => s.result).then(() => setSaid('Bounty claimed.'), e => setSaid(refusal(e)))}>
+      {/* After the final death the contract refuses claims, unless it was launched to allow them. */}
+      {BigInt(claimable) > 0n && frozen && (
+        <p className="note">Your bounty of {rosc(claimable)} ROSC was not claimed before the coin died. It is frozen with the coin.</p>
+      )}
+      {BigInt(claimable) > 0n && !frozen && claimable !== claimed && (
+        <button
+          type="button"
+          className="pad pad-claim"
+          onClick={() =>
+            sender
+              ?.send('claim_bounty')
+              .then(s => s.result)
+              .then(
+                () => {
+                  setClaimed(claimable);
+                  setSaid('Bounty claimed.');
+                },
+                e => setSaid(refusal(e)),
+              )
+          }
+        >
           Claim {rosc(claimable)} ROSC bounty
         </button>
       )}

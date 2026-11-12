@@ -1,13 +1,13 @@
 {
   "monitor": {
-    "block": 277375286,
+    "block": 277379968,
     "status": {
       "Alive": {
-        "arrest_block": 277375358
+        "arrest_block": 277380034
       }
     },
     "code": null,
-    "last_beat_block": 277375257,
+    "last_beat_block": 277379933,
     "alive_since_block": 277365418,
     "scars": 0,
     "deaths": 0,
@@ -15,260 +15,260 @@
     "ejection_fraction": 60,
     "beats": [
       {
-        "block": 277371665,
-        "tag": 380709786
-      },
-      {
-        "block": 277371720,
+        "block": 277376393,
         "tag": 896944877
       },
       {
-        "block": 277371778,
+        "block": 277376447,
         "tag": 380709786
       },
       {
-        "block": 277371836,
+        "block": 277376503,
         "tag": 896944877
       },
       {
-        "block": 277371894,
+        "block": 277376560,
         "tag": 380709786
       },
       {
-        "block": 277371949,
+        "block": 277376615,
         "tag": 896944877
       },
       {
-        "block": 277372006,
+        "block": 277376670,
         "tag": 380709786
       },
       {
-        "block": 277372065,
+        "block": 277376732,
         "tag": 896944877
       },
       {
-        "block": 277372128,
+        "block": 277376791,
         "tag": 380709786
       },
       {
-        "block": 277372186,
+        "block": 277376845,
         "tag": 896944877
       },
       {
-        "block": 277372246,
+        "block": 277376901,
         "tag": 380709786
       },
       {
-        "block": 277372305,
+        "block": 277376957,
         "tag": 896944877
       },
       {
-        "block": 277372366,
+        "block": 277377015,
         "tag": 380709786
       },
       {
-        "block": 277372427,
+        "block": 277377069,
         "tag": 896944877
       },
       {
-        "block": 277372482,
+        "block": 277377124,
         "tag": 380709786
       },
       {
-        "block": 277372536,
+        "block": 277377179,
         "tag": 896944877
       },
       {
-        "block": 277372591,
+        "block": 277377233,
         "tag": 380709786
       },
       {
-        "block": 277372645,
+        "block": 277377292,
         "tag": 896944877
       },
       {
-        "block": 277372699,
+        "block": 277377352,
         "tag": 380709786
       },
       {
-        "block": 277372753,
+        "block": 277377413,
         "tag": 896944877
       },
       {
-        "block": 277372812,
+        "block": 277377472,
         "tag": 380709786
       },
       {
-        "block": 277372871,
+        "block": 277377534,
         "tag": 896944877
       },
       {
-        "block": 277372936,
+        "block": 277377593,
         "tag": 380709786
       },
       {
-        "block": 277372997,
+        "block": 277377647,
         "tag": 896944877
       },
       {
-        "block": 277373051,
+        "block": 277377703,
         "tag": 380709786
       },
       {
-        "block": 277373110,
+        "block": 277377761,
         "tag": 896944877
       },
       {
-        "block": 277373166,
+        "block": 277377820,
         "tag": 380709786
       },
       {
-        "block": 277373221,
+        "block": 277377877,
         "tag": 896944877
       },
       {
-        "block": 277373275,
+        "block": 277377932,
         "tag": 380709786
       },
       {
-        "block": 277373330,
+        "block": 277377989,
         "tag": 896944877
       },
       {
-        "block": 277373384,
+        "block": 277378046,
         "tag": 380709786
       },
       {
-        "block": 277373438,
+        "block": 277378102,
         "tag": 896944877
       },
       {
-        "block": 277373493,
+        "block": 277378157,
         "tag": 380709786
       },
       {
-        "block": 277373552,
+        "block": 277378212,
         "tag": 896944877
       },
       {
-        "block": 277373613,
+        "block": 277378271,
         "tag": 380709786
       },
       {
-        "block": 277373672,
+        "block": 277378326,
         "tag": 896944877
       },
       {
-        "block": 277373731,
+        "block": 277378381,
         "tag": 380709786
       },
       {
-        "block": 277373785,
+        "block": 277378436,
         "tag": 896944877
       },
       {
-        "block": 277373841,
+        "block": 277378490,
         "tag": 380709786
       },
       {
-        "block": 277373895,
+        "block": 277378545,
         "tag": 896944877
       },
       {
-        "block": 277373951,
+        "block": 277378599,
         "tag": 380709786
       },
       {
-        "block": 277374010,
+        "block": 277378654,
         "tag": 896944877
       },
       {
-        "block": 277374068,
+        "block": 277378708,
         "tag": 380709786
       },
       {
-        "block": 277374128,
+        "block": 277378762,
         "tag": 896944877
       },
       {
-        "block": 277374184,
+        "block": 277378823,
         "tag": 380709786
       },
       {
-        "block": 277374237,
+        "block": 277378882,
         "tag": 896944877
       },
       {
-        "block": 277374291,
+        "block": 277378939,
         "tag": 380709786
       },
       {
-        "block": 277374345,
+        "block": 277378996,
         "tag": 896944877
       },
       {
-        "block": 277374398,
+        "block": 277379054,
         "tag": 380709786
       },
       {
-        "block": 277374456,
+        "block": 277379112,
         "tag": 896944877
       },
       {
-        "block": 277374518,
+        "block": 277379168,
         "tag": 380709786
       },
       {
-        "block": 277374576,
+        "block": 277379223,
         "tag": 896944877
       },
       {
-        "block": 277374635,
+        "block": 277379277,
         "tag": 380709786
       },
       {
-        "block": 277374692,
+        "block": 277379332,
         "tag": 896944877
       },
       {
-        "block": 277374748,
+        "block": 277379386,
         "tag": 380709786
       },
       {
-        "block": 277374811,
+        "block": 277379441,
         "tag": 896944877
       },
       {
-        "block": 277374870,
+        "block": 277379495,
         "tag": 380709786
       },
       {
-        "block": 277374929,
+        "block": 277379549,
         "tag": 896944877
       },
       {
-        "block": 277374984,
+        "block": 277379603,
         "tag": 380709786
       },
       {
-        "block": 277375038,
+        "block": 277379658,
         "tag": 896944877
       },
       {
-        "block": 277375093,
+        "block": 277379712,
         "tag": 380709786
       },
       {
-        "block": 277375148,
+        "block": 277379767,
         "tag": 896944877
       },
       {
-        "block": 277375203,
+        "block": 277379821,
         "tag": 380709786
       },
       {
-        "block": 277375257,
+        "block": 277379878,
         "tag": 896944877
+      },
+      {
+        "block": 277379933,
+        "tag": 380709786
       }
     ],
     "buckets": [
@@ -288,16 +288,6 @@
         "electrical": 0
       },
       {
-        "index": 27736867,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27736878,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
         "index": 27736884,
         "beats": 1,
         "electrical": 0
@@ -308,112 +298,12 @@
         "electrical": 0
       },
       {
-        "index": 27736988,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737088,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737110,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
         "index": 27737115,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737121,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737127,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737132,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737138,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737144,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737155,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737206,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737212,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
         "index": 27737224,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737230,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737248,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737275,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737281,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737287,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737293,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737299,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737305,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737316,
         "beats": 1,
         "electrical": 0
       },
@@ -438,61 +328,6 @@
         "electrical": 0
       },
       {
-        "index": 27737355,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737361,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737367,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737373,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737378,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737384,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737389,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737395,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737401,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737406,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
-        "index": 27737412,
-        "beats": 1,
-        "electrical": 0
-      },
-      {
         "index": 27737418,
         "beats": 1,
         "electrical": 0
@@ -503,93 +338,278 @@
         "electrical": 0
       },
       {
-        "index": 27737451,
+        "index": 27737536,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737457,
+        "index": 27737604,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737463,
+        "index": 27737611,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737469,
+        "index": 27737617,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737474,
+        "index": 27737622,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737481,
+        "index": 27737628,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737487,
+        "index": 27737633,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737492,
+        "index": 27737639,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737498,
+        "index": 27737644,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737503,
+        "index": 27737650,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737509,
+        "index": 27737661,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737514,
+        "index": 27737679,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737520,
+        "index": 27737717,
         "beats": 1,
         "electrical": 0
       },
       {
-        "index": 27737525,
+        "index": 27737747,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737753,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737759,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737764,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737770,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737776,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737782,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737787,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737793,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737798,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737804,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737815,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737827,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737838,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737849,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737870,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737876,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737882,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737888,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737893,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737899,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737905,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737911,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737916,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737922,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737927,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737933,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737938,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737944,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737949,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737954,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737960,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737965,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737971,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737976,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737982,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737987,
+        "beats": 1,
+        "electrical": 0
+      },
+      {
+        "index": 27737993,
         "beats": 1,
         "electrical": 0
       }
     ],
     "pools": {
-      "cart": "979000402786367072000000001",
+      "cart": "979000403201367072000000001",
       "faucet": "1492000000000000000000000000",
       "claimable": "0"
     },
-    "supply": "2498979997179966400000000000",
+    "supply": "2498979996764966400000000000",
     "totals": {
-      "burned_oxygen": "2820000000000000000",
+      "burned_oxygen": "3235000000000000000",
       "burned_noflow": "20000000033600000000000",
       "burned_epi": "1000000000000000000000000",
       "burned_death": "0",
       "burned_estate": "0",
-      "premiums": "2820000000000000000",
+      "premiums": "3235000000000000000",
       "donations": "0",
       "bounties": "19979600033599327999999999",
       "faucet_paid": "8000000000000000000000000",
-      "beats": 188,
+      "beats": 271,
       "electrical": 0,
       "arrests": 1,
       "saves": 1
@@ -650,449 +670,449 @@
   "marks": [
     {
       "kind": "beat",
-      "block": 277371665,
-      "tag": 380709786,
-      "paced": true,
-      "bot": true
-    },
-    {
-      "kind": "beat",
-      "block": 277371720,
+      "block": 277376393,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277371778,
+      "block": 277376447,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277371836,
+      "block": 277376503,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277371894,
+      "block": 277376560,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277371949,
+      "block": 277376615,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372006,
+      "block": 277376670,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372065,
+      "block": 277376732,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372128,
+      "block": 277376791,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372186,
+      "block": 277376845,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372246,
+      "block": 277376901,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372305,
+      "block": 277376957,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372366,
+      "block": 277377015,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372427,
+      "block": 277377069,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372482,
+      "block": 277377124,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372536,
+      "block": 277377179,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372591,
+      "block": 277377233,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372645,
+      "block": 277377292,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372699,
+      "block": 277377352,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372753,
+      "block": 277377413,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372812,
+      "block": 277377472,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372871,
+      "block": 277377534,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372936,
+      "block": 277377593,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277372997,
+      "block": 277377647,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373051,
+      "block": 277377703,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373110,
+      "block": 277377761,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373166,
+      "block": 277377820,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373221,
+      "block": 277377877,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373275,
+      "block": 277377932,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373330,
+      "block": 277377989,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373384,
+      "block": 277378046,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373438,
+      "block": 277378102,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373493,
+      "block": 277378157,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373552,
+      "block": 277378212,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373613,
+      "block": 277378271,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373672,
+      "block": 277378326,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373731,
+      "block": 277378381,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373785,
+      "block": 277378436,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373841,
+      "block": 277378490,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373895,
+      "block": 277378545,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277373951,
+      "block": 277378599,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374010,
+      "block": 277378654,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374068,
+      "block": 277378708,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374128,
+      "block": 277378762,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374184,
+      "block": 277378823,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374237,
+      "block": 277378882,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374291,
+      "block": 277378939,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374345,
+      "block": 277378996,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374398,
+      "block": 277379054,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374456,
+      "block": 277379112,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374518,
+      "block": 277379168,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374576,
+      "block": 277379223,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374635,
+      "block": 277379277,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374692,
+      "block": 277379332,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374748,
+      "block": 277379386,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374811,
+      "block": 277379441,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374870,
+      "block": 277379495,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374929,
+      "block": 277379549,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277374984,
+      "block": 277379603,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277375038,
+      "block": 277379658,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277375093,
+      "block": 277379712,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277375148,
+      "block": 277379767,
       "tag": 896944877,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277375203,
+      "block": 277379821,
       "tag": 380709786,
       "paced": true,
       "bot": true
     },
     {
       "kind": "beat",
-      "block": 277375257,
+      "block": 277379878,
       "tag": 896944877,
+      "paced": true,
+      "bot": true
+    },
+    {
+      "kind": "beat",
+      "block": 277379933,
+      "tag": 380709786,
       "paced": true,
       "bot": true
     }
