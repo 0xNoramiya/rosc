@@ -14,7 +14,7 @@ investment, not a medical device and not CPR training.
 **Open the page:** <https://rosc-eight.vercel.app>. It opens on
 `testnet-live`, a coin on the live preset. Nobody trades a testnet toy, so a
 [scheduled job](.github/workflows/pacemaker.yml) sends one transfer between
-two bot wallets every three hours, and the monitor calls that rhythm "Paced",
+two bot wallets every hour, and the monitor calls that rhythm "Paced",
 which is what it is. The other coins in the picker ran the demo preset, where
 a minute of silence stops the heart, so expect them in arrest or under a
 headstone. `make demo` deploys fresh ones.

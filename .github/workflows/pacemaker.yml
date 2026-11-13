@@ -2,8 +2,12 @@
 #
 # That coin runs the live preset: twelve hours without a transfer stops its
 # heart. Nobody is trading a testnet toy, so this job sends one small transfer
-# between two bot wallets every three hours. It is the "pacemaker bot" from
-# the README's abuse table, and the monitor labels the rhythm "Paced".
+# between two bot wallets every hour. It is the "pacemaker bot" from the
+# README's abuse table, and the monitor labels the rhythm "Paced".
+#
+# Hourly is far more often than twelve hours needs. GitHub starts scheduled
+# jobs late and drops some: on this job's first day one slot in two never ran
+# and the other started two hours late.
 #
 # If the heart has already stopped the transfer is refused and the job fails:
 # a pacemaker cannot restart it. Someone has to do CPR on the page.
@@ -11,7 +15,7 @@ name: Pacemaker
 
 on:
   schedule:
-    - cron: "17 */3 * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
