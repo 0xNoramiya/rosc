@@ -149,3 +149,52 @@ test('keyboard-only use completes a full code with no wallet prompt', async ({ p
       `press to mark median ${Math.round(median)} ms, slowest ${Math.round(waits[waits.length - 1])} ms`,
   );
 });
+
+// The practice coin's guest path: no wallet, a key lent by the guest desk.
+// The desk is a server function on the page's host (api/guest.mjs); here it
+// runs inside the test, so this needs the guest account's key in bots/.keys
+// and is skipped without it. Against the hosted page nothing is stubbed:
+// `GUEST_PAGE=https://rosc-eight.vercel.app npx playwright test -g guest`.
+test('a guest with no wallet does CPR on the practice coin', async ({ page }) => {
+  const coin = deployment('testnet-practice');
+  const guest: string = coin.bots.find((b: { role?: string }) => b.role === 'guest').id;
+  const hosted = process.env.GUEST_PAGE;
+  const keyFile = join(repo, 'bots/.keys', `${guest}.json`);
+  test.skip(!hosted && !existsSync(keyFile), `needs ${guest}'s key, or GUEST_PAGE`);
+  if (!hosted) {
+    process.env.GUEST_KEY = readFileSync(keyFile, 'utf8');
+    const { POST } = await import(join(repo, 'api/guest.mjs'));
+    await page.route('**/api/guest', async route => {
+      const answer: Response = await POST(new Request('http://localhost/api/guest', { method: 'POST', body: route.request().postData(), headers: { 'content-type': 'application/json' } }));
+      await route.fulfill({ status: answer.status, contentType: 'application/json', body: await answer.text() });
+    });
+  }
+
+  await page.goto(`${hosted ?? ''}/?coin=testnet-live#monitor`);
+  await page.getByRole('link', { name: 'Do CPR on the practice coin' }).click({ timeout: 60_000 });
+  await ready(page);
+  const started = Date.now();
+  await page.getByRole('button', { name: 'Scrub in as a guest' }).first().click();
+  await expect(page.getByText('The page holds a key for the rescue calls.')).toBeVisible({ timeout: 60_000 });
+  const scrubbed = Date.now() - started;
+  await expect(page.getByText('A guest can do CPR and nothing else.')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Send a beat' })).toHaveCount(0);
+
+  // The coin has a pulse for a minute after each save. Wait for it to stop.
+  await page.waitForFunction(() => (window as any).codeblue.monitor.status === 'Arrest', null, { timeout: 3 * 60_000, polling: 500 });
+  await page.locator('body').click({ position: { x: 5, y: 5 } });
+  await page.keyboard.press('c');
+  let presses = 0;
+  const called = Date.now();
+  for (;;) {
+    const { monitor } = await chain(page);
+    if (monitor.status !== 'Arrest') break;
+    expect(Date.now() - called, 'a practice code should end inside three minutes').toBeLessThan(3 * 60_000);
+    if (monitor.code.phase === 'Compressions') {
+      await page.keyboard.press('Space');
+      presses++;
+    }
+    await page.waitForTimeout(600);
+  }
+  console.log(`guest: scrubbed in after ${(scrubbed / 1000).toFixed(1)} s; ${presses} presses, pulse back ${((Date.now() - called) / 1000).toFixed(0)} s after the code was called`);
+});

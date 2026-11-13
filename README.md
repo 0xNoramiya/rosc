@@ -17,9 +17,27 @@ investment, not a medical device and not CPR training.
 two bot wallets once the coin has been quiet for two hours, and the monitor
 calls that rhythm "Paced", which is what it is. GitHub's scheduler skips many
 of that job's slots, so the page's host calls the same step every three hours
-as well ([`api/pace.mjs`](api/pace.mjs)). The other coins in the picker ran the demo preset, where
-a minute of silence stops the heart, so expect them in arrest or under a
-headstone. `make demo` deploys fresh ones.
+as well ([`api/pace.mjs`](api/pace.mjs)). The demo-preset coins in the picker
+have had their lives, so expect a headstone. `make demo` deploys fresh ones.
+
+**Do CPR yourself, in about a minute, with no wallet:**
+<https://rosc-eight.vercel.app/?coin=testnet-practice#code>. Press *Scrub in
+as a guest*. If the coin has a pulse, it stops within a minute of the last
+save. Then press `C` to call the code and keep a steady `Space` on the beat:
+thirty compressions, one per block, and the pulse comes back at the rhythm
+check. `D` hands the pressing to a device if you would rather watch. Every
+press is a real testnet transaction, signed in your browser with a key that
+the page's [guest desk](api/guest.mjs) adds to the coin's guest account for
+the rescue calls only. Measured on the hosted page from a cold start: scrubbed
+in after 3.6 s, pulse back 33 s later.
+
+`testnet-practice` is the same contract with gentler launch parameters, so
+that it is always waiting for someone: it stays in arrest for weeks without
+dying, one hands-only cycle is enough for a save, and a save does not raise
+the next target. They are listed [below](#the-coins-on-testnet), in
+[its deployment file](deployments/testnet-practice.json) and on its Parameters
+screen. The live preset asks for more: a target four times as high, and scars
+that raise it with every save.
 
 **The limits, up front.** The mechanic does not resist one determined person
 with several accounts. One bot can keep the coin alive for 4 ROSC a day, one
@@ -62,6 +80,7 @@ on `PATH`, and Node 20 or newer. The testnet steps also need
 
 | Do | See |
 | --- | --- |
+| Open [the practice coin](https://rosc-eight.vercel.app/?coin=testnet-practice#code) and press *Scrub in as a guest* | A coin in arrest that you bring back from the keyboard in under a minute. Nothing to install, no wallet. |
 | `make demo` | A whole life on testnet in about ten minutes, with a link for every transaction. Expected output is [below](#make-demo). |
 | `make test` | 50 rulebook and simulator tests, then 8 contract tests on a local sandbox chain, all passing. |
 | `make sim` | Six scenarios, 1,000 runs each, written to `sim/out/` with charts in `sim/out/charts/`. Two runs give byte-identical files. |
@@ -133,6 +152,24 @@ about half an hour later, so the demo coin only stays alive while a pacer runs
 (`make pacer`). `make demo` deploys fresh coins when the ones on file are used
 up.
 
+### The coins on testnet
+
+Two more coins are kept for the page, on the same wasm:
+
+| Deployment | Contract | What it is |
+| --- | --- | --- |
+| [`deployments/testnet-live.json`](deployments/testnet-live.json) | [`rosc-96dcd9.testnet`](https://testnet.nearblocks.io/address/rosc-96dcd9.testnet) | The live preset, paced. The hosted page opens on it. |
+| [`deployments/testnet-practice.json`](deployments/testnet-practice.json) | [`rosc-472a6c.testnet`](https://testnet.nearblocks.io/address/rosc-472a6c.testnet) | The practice coin, for anyone to do CPR on as a guest. |
+
+The practice coin is the demo preset with eight values changed at launch:
+`NO_FLOW_MAX_BLOCKS` and `MAX_PAUSE_BLOCKS` 3,000,000, so a code waits about
+three weeks for a rescuer and an abandoned one waits for the next;
+`NOFLOW_BURN_BPS` and `NOFLOW_TARGET_CAP` 0, so the wait costs nothing;
+`BASE_TARGET` 50, `SCAR_TARGET` 0 and `CYCLES_PER_ROUND` 1, so one hands-only
+cycle of thirty compressions is a save every time; and `MAX_ROUNDS` 200.
+Like every parameter, they were fixed at launch and `get_config()` returns
+them.
+
 ## What the track asks for
 
 | The track asks for | Met by |
@@ -140,7 +177,7 @@ up.
 | An NEP-141 token with the mechanic in the contract, not a backend | [`contracts/rosc`](contracts/rosc/src/lib.rs): one contract. The page only reads the chain, and the pager is optional. |
 | Parameters set at launch, readable by anyone, no admin key | `Config` is written once in [`new`](contracts/rosc/src/lib.rs), returned by `get_config()`, and the account has [zero access keys](#no-admin). |
 | Sybil resistance good enough for a demo, limits written plainly | The [abuse table](#how-it-can-be-abused) and the paragraph at the top of this file. |
-| A page with current state and a log of every mint and burn | [`web/`](web/src/App.tsx): the Monitor screen and the Chart screen. The one mint is the `ft_mint` event at launch; every burn is an `ft_burn` event and a ledger line. |
+| A page with current state and a log of every mint and burn | [`web/`](web/src/App.tsx): the Monitor screen and the Chart screen. The one mint is the `ft_mint` event at launch; every burn is an `ft_burn` event and a ledger line. The Chart screen lists the newest 256 ledger lines, which is what the contract keeps, with oxygen burns added up per monitor bucket. Older lines are only in the chain's event log, which the page does not read. |
 | 60 simulated days with supply over time, then parameters | [`sim/`](sim/src/main.rs), its files in [`sim/out/`](sim/out), and [`docs/params.md`](docs/params.md). |
 
 ## How it works
@@ -204,7 +241,8 @@ nothing more. The numbers are game design, not medicine.
 | Wasting epinephrine | A griefer pushes every dose. | One dose per window, at most five a code, and each one helps the patient. |
 | Calling death early | A griefer wants the strike. | `call_time_of_death()` fails until a death condition holds, and then only writes what is already true. |
 | Late joiner | Someone arrives for the last round. | Shares follow work units, so they earn only what they did. |
-| Faucet farming | New accounts drain the faucet. | Accepted on testnet. A launch with real value needs a different distribution. |
+| Faucet farming | New accounts drain the faucet. | Accepted on testnet. A launch with real value needs a different distribution ([below](#distribution-is-not-built)). |
+| Guest keys | Anyone can ask the practice coin's guest desk for a rescue key and burn its gas. | At most 30 keys at a time, each good for an hour and 0.2 NEAR of gas, and they can only press on the practice coin. Someone determined can still empty the guest account's few testnet NEAR; the practice coin then needs a wallet. |
 | Frozen integrations | A pool or bridge holding ROSC cannot move it during an arrest, or ever after death. | By design. Testnet only, unless a deployer sets `POST_MORTEM_TRANSFERS` at launch. |
 | Leaked page key | The key in the browser can only call rescue methods. | Worst case, someone does compressions in your name. |
 | Timing games | Block producers order calls within a block. | One compression counts per block and nothing is random, so order inside a block does not matter. |
@@ -216,6 +254,20 @@ nothing more. The numbers are game design, not medicine.
 - Landing a call in a given block is partly luck. In the demo run the rescue
   bots sent one press per block and 120 of 145 were counted; the page test's
   first thirty all were ([measured on chain](#measured-on-chain)).
+
+### Distribution is not built
+
+The whole supply is minted to the contract at launch: 40% to the crash cart
+and 60% to a faucet that pays 1,000,000 ROSC once per account. That suits a
+testnet toy and is not a launch.
+
+[meme.cooking](https://meme.cooking/), the track's launchpad, creates the
+token itself and puts about half of the supply into a Ref Finance pool with
+the liquidity locked ([how it works](https://docs.meme.cooking/for-buyers/how-it-works)).
+This coin's rules live in its own token contract, so it could not launch there
+as it stands. A pool would also meet the mechanic head on. A swap is a
+transfer, so trading would keep the heart beating; and during an arrest the
+pool could not move ROSC until someone did CPR.
 
 Things that follow from the rules and may surprise you:
 
