@@ -2,7 +2,9 @@
 // The coin stays alive on-chain; the monitor labels it for what it is.
 //
 //   node bots/pacer.mjs [deployment] [hours]      default: testnet-demo, until stopped
-//   node bots/pacer.mjs <deployment> --once       one beat, then exit: for a scheduled job
+//   node bots/pacer.mjs <deployment> --once       one beat, then exit
+//   node bots/pacer.mjs <deployment> --when-due   one beat if the coin has been quiet long enough, else nothing:
+//                                                 for a scheduled job that runs more often than the coin needs
 import { fileURLToPath } from "node:url";
 import { Wallet, explorerTx, loadDeployment, measureBlockMs, sleep, statusOf, view } from "./lib/near.mjs";
 
@@ -42,11 +44,26 @@ export async function paceOnce({ coin, wallets, log = () => {} }) {
   return outcome.ok;
 }
 
+/** Whether the next paced beat is due: the coin has gone a sixth of its arrest window without one. */
+export async function beatDue(coin) {
+  const [config, monitor] = await Promise.all([view(coin, "get_config"), view(coin, "get_monitor")]);
+  const every = Math.ceil(config.arrest_blocks / 6);
+  const quiet = monitor.block - monitor.last_beat_block;
+  return { due: quiet >= every, quiet, every };
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const deployment = loadDeployment(process.argv[2] || "testnet-demo");
   const hours = Number(process.argv[3] || 0);
   const wallets = ["bot-pacer", "bot-pacer-2"].map((role) => new Wallet(deployment.bots.find((b) => b.role === role).id));
-  if (process.argv.includes("--once")) {
+  if (process.argv.includes("--when-due")) {
+    const { due, quiet, every } = await beatDue(deployment.contract);
+    if (!due) {
+      console.log(`${deployment.contract}: last beat ${quiet} blocks ago, the next is due at ${every}. Nothing sent.`);
+      process.exit(0);
+    }
+  }
+  if (process.argv.includes("--once") || process.argv.includes("--when-due")) {
     // A refusal means the heart has stopped. A pacemaker cannot restart it, so the job fails loudly.
     process.exit((await paceOnce({ coin: deployment.contract, wallets, log: console.log })) ? 0 : 1);
   }
