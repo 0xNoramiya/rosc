@@ -10,6 +10,7 @@
 # scheduled jobs late and drops many: on this job's first day, on a
 # three-hour schedule, one slot in four ran. With a look every fifteen
 # minutes, forty in a row have to be dropped before the heart stops.
+# api/pace.mjs is a second trigger for the same step, on the page's host.
 #
 # If the heart has already stopped the transfer is refused and the job fails:
 # a pacemaker cannot restart it. Someone has to do CPR on the page.
