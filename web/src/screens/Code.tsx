@@ -30,6 +30,8 @@ interface Props {
   sheetDue?: boolean;
   claimable: string;
   explorer: (hash: string) => string;
+  /** The coin's guest account, on a practice coin. */
+  guestId?: string | null;
 }
 
 /// What the AED would say right now.
@@ -87,7 +89,7 @@ function useMetronome(blockMs: number, onBeat: () => void, sound: boolean) {
   return beat;
 }
 
-export function CodeScreen({ monitor, blockMs, rescuer, sheet, sheetDue = false, claimable, explorer }: Props) {
+export function CodeScreen({ monitor, blockMs, rescuer, sheet, sheetDue = false, claimable, explorer, guestId = null }: Props) {
   const [presses, setPresses] = useState<Press[]>([]);
   const [device, setDevice] = useState(false);
   const [sound, setSound] = useState(false);
@@ -240,6 +242,24 @@ export function CodeScreen({ monitor, blockMs, rescuer, sheet, sheetDue = false,
       <p className="aed" role="status" aria-live="polite">
         {line}
       </p>
+      {guestId && !rescuer.accountId && (
+        <div className="guest-desk">
+          <p className="note">This is a practice coin, and it needs no wallet. Scrub in as its guest, then press on the beat.</p>
+          <button type="button" className="primary" onClick={() => rescuer.scrubInAsGuest(guestId)} disabled={Boolean(rescuer.busy)}>
+            Scrub in as a guest
+          </button>
+          {rescuer.busy && (
+            <p className="note" role="status">
+              {rescuer.busy}…
+            </p>
+          )}
+          {rescuer.error && (
+            <p className="note is-alarm" role="alert">
+              {rescuer.error}
+            </p>
+          )}
+        </div>
+      )}
 
       {code && (
         <div className="code-numbers">

@@ -1,6 +1,6 @@
 // Launches a coin on NEAR testnet and leaves it without an owner.
 //
-//   node bots/deploy.mjs <name> [--preset demo|live] [--bots full|minimal] [key=value ...]
+//   node bots/deploy.mjs <name> [--preset demo|live] [--bots full|minimal|paced|practice] [--note text] [key=value ...]
 //
 //   node bots/deploy.mjs testnet-demo
 //   node bots/deploy.mjs testnet-headstone --bots minimal no_flow_max_blocks=60 lazarus_blocks=20
@@ -36,6 +36,8 @@ const TEAMS = {
   minimal: [["bot-holder-1", 0.4], ["bot-holder-2", 0.4]],
   // Two wallets and nothing else: a coin kept going by a pacemaker.
   paced: [["bot-pacer", 0.3], ["bot-pacer-2", 0.3]],
+  // One account that visitors to the page press as: the practice coin's guest.
+  practice: [["guest", 4]],
 };
 
 const log = (...a) => console.log(...a);
@@ -210,13 +212,14 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   };
   const preset = flag("preset", "demo");
   const team = flag("bots", "full");
+  const note = flag("note", null);
   const name = args.shift();
   if (!name || !TEAMS[team]) {
-    console.error("usage: node bots/deploy.mjs <name> [--preset demo|live] [--bots full|minimal|paced] [key=value ...]");
+    console.error("usage: node bots/deploy.mjs <name> [--preset demo|live] [--bots full|minimal|paced|practice] [--note text] [key=value ...]");
     process.exit(2);
   }
   const overrides = Object.fromEntries(args.map((pair) => pair.split("=")));
-  const record = await deploy(name, { preset, overrides, team });
+  const record = await deploy(name, { preset, overrides, team, note });
   console.log(`\n${record.contract}\n${record.explorer.contract}`);
   console.log(`$ ${record.no_admin.command}\n${record.no_admin.output}`);
 }

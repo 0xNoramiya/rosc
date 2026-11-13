@@ -20,18 +20,24 @@ export async function GET(request) {
   if (!process.env.CRON_SECRET || request.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`)
     return new Response('For the scheduler only.\n', { status: 401 });
   const coin = deployment.contract;
-  // The wallets are made on every call, due or not, so a missing or damaged key shows up at once and not on the
-  // day it is needed.
-  const keys = new Map(JSON.parse(process.env.PACER_KEYS).map(key => [key.account_id, key.private_key]));
-  const wallets = ['bot-pacer', 'bot-pacer-2'].map(role => {
-    const id = deployment.bots.find(bot => bot.role === role).id;
-    return new Wallet(id, keys.get(id));
-  });
-  const { due, quiet, every } = await beatDue(coin);
-  if (!due) return Response.json({ coin, sent: false, why: `last beat ${quiet} blocks ago, the next is due at ${every}`, wallets: wallets.map(w => w.accountId) });
-  const log = [];
-  const sent = await paceOnce({ coin, wallets, log: line => log.push(line) });
-  // A refusal means the heart has stopped, and a pacemaker cannot restart it.
-  // The 500 puts that in the project's logs.
-  return Response.json({ coin, sent, log }, { status: sent ? 200 : 500 });
+  try {
+    // The wallets are made on every call, due or not, so a missing or damaged key shows up at once and not on the
+    // day it is needed.
+    const keys = new Map(JSON.parse(process.env.PACER_KEYS).map(key => [key.account_id, key.private_key]));
+    const wallets = ['bot-pacer', 'bot-pacer-2'].map(role => {
+      const id = deployment.bots.find(bot => bot.role === role).id;
+      return new Wallet(id, keys.get(id));
+    });
+    const { due, quiet, every } = await beatDue(coin);
+    if (!due) return Response.json({ coin, sent: false, why: `last beat ${quiet} blocks ago, the next is due at ${every}`, wallets: wallets.map(w => w.accountId) });
+    const log = [];
+    const sent = await paceOnce({ coin, wallets, log: line => log.push(line) });
+    // A refusal means the heart has stopped, and a pacemaker cannot restart it.
+    // The 500 puts that in the project's logs.
+    console.log(`pace ${coin}: ${sent ? 'beat sent' : 'refused'} ${log.join(' | ')}`);
+    return Response.json({ coin, sent, log }, { status: sent ? 200 : 500 });
+  } catch (e) {
+    console.error(`pace ${coin}: ${e instanceof Error ? e.stack : e}`);
+    return Response.json({ coin, sent: false, error: e instanceof Error ? e.message : String(e) }, { status: 500 });
+  }
 }

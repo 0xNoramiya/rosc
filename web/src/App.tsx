@@ -55,6 +55,10 @@ function useCompressions(monitor: Monitor | null): number[] {
   return seen.current.blocks;
 }
 
+/// The account a visitor can press as on a practice coin, if this is one.
+const guestOf = (deployment: Deployment | null) =>
+  deployment?.bots?.map(bot => (typeof bot === 'string' ? null : bot)).find(bot => bot?.role === 'guest')?.id ?? null;
+
 export default function App() {
   const [deployments, setDeployments] = useState<Deployment[] | null>(null);
   useEffect(() => void loadDeployments().then(setDeployments), []);
@@ -72,6 +76,8 @@ export default function App() {
     return deployments.find(d => d.preset === 'live') ?? deployments[0] ?? null;
   }, [deployments, wanted]);
   const contract = deployment?.contract ?? null;
+  // A practice coin has a guest account that a visitor can press as.
+  const practice = useMemo(() => deployments?.find(d => guestOf(d)) ?? null, [deployments]);
   const rpc = query.get('rpc') ?? READ_RPCS[0];
   const sendRpc = query.get('send') ?? SEND_RPC;
 
@@ -200,6 +206,11 @@ export default function App() {
               </select>
             </label>
           )}
+          {practice && practice.name !== deployment?.name && (
+            <a className="softkey practice-link" href={`?coin=${practice.name}#code`}>
+              Do CPR on the practice coin
+            </a>
+          )}
           <button
             type="button"
             className="band-toggle"
@@ -270,7 +281,7 @@ export default function App() {
                 </div>
               )}
               {tab === 'code' && (
-                <CodeScreen monitor={monitor} blockMs={blockMs} rescuer={rescuer} sheet={latestSheet} sheetDue={sheetDue} claimable={chart.claimable} explorer={explorer} />
+                <CodeScreen monitor={monitor} blockMs={blockMs} rescuer={rescuer} sheet={latestSheet} sheetDue={sheetDue} claimable={chart.claimable} explorer={explorer} guestId={guestOf(deployment)} />
               )}
               {tab === 'chart' && <ChartScreen rpc={rpc} contract={deployment.contract} sheets={sheets} sheetDue={sheetDue} blockMs={blockMs} block={monitor.block} />}
               {tab === 'parameters' && <ParametersScreen config={monitor.config} blockMs={blockMs} contract={deployment.contract} />}
@@ -281,7 +292,7 @@ export default function App() {
       </main>
 
       <div className="below">
-        {contract && monitor && <Bedside rescuer={rescuer} chart={chart} minBalance={monitor.config.min_rescuer_balance} status={status ?? 'alive'} />}
+        {contract && monitor && <Bedside rescuer={rescuer} chart={chart} minBalance={monitor.config.min_rescuer_balance} status={status ?? 'alive'} guestId={guestOf(deployment)} />}
         <CprCard />
       </div>
 

@@ -21,6 +21,8 @@ interface Stored {
   accountId: string;
   secretKey: string;
   local?: boolean;
+  /** A key the guest desk lent: it can press on this coin and do nothing else. */
+  guest?: boolean;
 }
 
 const slot = (contractId: string) => `codeblue:rescuer:${contractId}`;
@@ -60,9 +62,11 @@ function write(contractId: string, value: Stored | null) {
 }
 
 export interface Rescuer {
-  /** The account at the bedside, from the wallet or from a pasted key. */
+  /** The account at the bedside, from the wallet, from a pasted key, or the coin's guest. */
   accountId: string | null;
   walletAccountId: string | null;
+  /** At the bedside as the coin's guest account, with a key that can only press. */
+  isGuest: boolean;
   /** Ready to press: a key is on chain and primed. */
   sender: FastSender | null;
   keyStatus: 'none' | 'checking' | 'ready' | 'missing';
@@ -77,6 +81,8 @@ export interface Rescuer {
   transfer(receiverId: string, amount: string): Promise<void>;
   /** Uses an account and secret key typed in by hand instead of a wallet. */
   useLocalKey(accountId: string, secretKey: string): void;
+  /** No wallet: makes a key here and asks the coin's guest desk to add it to the guest account. */
+  scrubInAsGuest(guestId: string): Promise<void>;
   forgetKey(): void;
 }
 
@@ -143,6 +149,7 @@ export function useRescuer(rpc: string, contractId: string | null): Rescuer {
     () => ({
       accountId,
       walletAccountId,
+      isGuest: Boolean(active?.guest),
       sender,
       keyStatus,
       busy,
@@ -193,11 +200,37 @@ export function useRescuer(rpc: string, contractId: string | null): Rescuer {
           setError(e instanceof Error ? e.message : String(e));
         }
       },
+      scrubInAsGuest: guestId =>
+        attempt('Asking the guest desk for a key', async () => {
+          if (!contractId) return;
+          const pair = KeyPair.fromRandom('ed25519');
+          const response = await fetch(`${import.meta.env.BASE_URL}api/guest`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ public_key: pair.getPublicKey().toString() }),
+          });
+          const answer: { account_id?: string; error?: string } | null = await response.json().catch(() => null);
+          if (!response.ok || answer?.account_id !== guestId) throw new Error(answer?.error ?? 'The guest desk did not answer. Connect a wallet instead.');
+          // The key is on chain a block or two before every node shows it.
+          const probe = new FastSender(provider(rpc), guestId, pair.toString(), contractId);
+          for (let tries = 0; ; tries++) {
+            try {
+              await probe.prime();
+              break;
+            } catch {
+              if (tries >= 8) throw new Error('The guest key was added but has not shown up yet. Try again in a moment.');
+              await new Promise(resolve => setTimeout(resolve, 700));
+            }
+          }
+          const next = { accountId: guestId, secretKey: pair.toString(), local: true, guest: true };
+          write(contractId, next);
+          setStored(next);
+        }),
       forgetKey: () => {
         if (contractId) write(contractId, null);
         setStored(null);
       },
     }),
-    [accountId, walletAccountId, sender, keyStatus, busy, error, contractId, wallet, attempt],
+    [accountId, walletAccountId, active?.guest, sender, keyStatus, busy, error, contractId, rpc, wallet, attempt],
   );
 }

@@ -17,9 +17,11 @@ interface Props {
   chart: Chart;
   minBalance: string;
   status: StatusName;
+  /** The coin's guest account, on a practice coin: a visitor can press as it with no wallet. */
+  guestId?: string | null;
 }
 
-export function Bedside({ rescuer, chart, minBalance, status }: Props) {
+export function Bedside({ rescuer, chart, minBalance, status, guestId = null }: Props) {
   const [to, setTo] = useState('');
   const [amount, setAmount] = useState('10');
   // What became of the last transfer sent from here: the chain's own answer.
@@ -31,6 +33,16 @@ export function Bedside({ rescuer, chart, minBalance, status }: Props) {
   return (
     <section className="bedside" aria-label="Scrub in">
       <h2>Scrub in</h2>
+      {guestId && !rescuer.accountId && (
+        <div className="guest-desk">
+          <p className="note">
+            No wallet? This is a practice coin. The page can borrow its guest account, with a key that makes the rescue calls and cannot move a token.
+          </p>
+          <button type="button" className="primary" onClick={() => rescuer.scrubInAsGuest(guestId)} disabled={Boolean(rescuer.busy)}>
+            Scrub in as a guest
+          </button>
+        </div>
+      )}
       <ol className="steps">
         <li className={rescuer.accountId ? 'is-done' : ''}>
           <span className="step-text">{rescuer.accountId ? `At the bedside as ${short(rescuer.accountId)}.` : 'Connect a wallet.'}</span>
@@ -88,8 +100,9 @@ export function Bedside({ rescuer, chart, minBalance, status }: Props) {
         </p>
       )}
 
+      {rescuer.isGuest && <p className="note">A guest can do CPR and nothing else. Sending a beat takes a wallet of your own.</p>}
       {/* The form stays through an arrest: a transfer then is refused, and the page shows the chain saying so. */}
-      {rescuer.accountId && status !== 'deceased' && (
+      {rescuer.accountId && !rescuer.isGuest && status !== 'deceased' && (
         <form
           className="beat-form"
           onSubmit={event => {
