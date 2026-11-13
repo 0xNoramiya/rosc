@@ -1,7 +1,41 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "installCommand": "cd web && npm ci",
+  "installCommand": "cd web && npm ci && cd ../bots && npm ci",
   "buildCommand": "cd web && npm run build",
-  "outputDirectory": "web/dist"
+  "outputDirectory": "web/dist",
+  "crons": [
+    {
+      "path": "/api/pace?hour=01",
+      "schedule": "40 1 * * *"
+    },
+    {
+      "path": "/api/pace?hour=04",
+      "schedule": "40 4 * * *"
+    },
+    {
+      "path": "/api/pace?hour=07",
+      "schedule": "40 7 * * *"
+    },
+    {
+      "path": "/api/pace?hour=10",
+      "schedule": "40 10 * * *"
+    },
+    {
+      "path": "/api/pace?hour=13",
+      "schedule": "40 13 * * *"
+    },
+    {
+      "path": "/api/pace?hour=16",
+      "schedule": "40 16 * * *"
+    },
+    {
+      "path": "/api/pace?hour=19",
+      "schedule": "40 19 * * *"
+    },
+    {
+      "path": "/api/pace?hour=22",
+      "schedule": "40 22 * * *"
+    }
+  ]
 }

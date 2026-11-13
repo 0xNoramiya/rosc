@@ -1,10 +1,17 @@
 # The hosted page is built from web/, with the coin list in deployments/ and
-# the simulator's charts and files in sim/. Nothing else is uploaded.
+# the simulator's charts and files in sim/. The pacemaker's function adds api/
+# and bots/. Nothing else is uploaded.
 /*
 !/vercel.json
 !/web
 !/sim
 !/deployments
+# The pacemaker's second trigger (api/pace.mjs) and the bot code it runs.
+!/api
+!/bots
+bots/.keys
+bots/out
+bots/node_modules
 web/node_modules
 web/dist
 web/test-results
