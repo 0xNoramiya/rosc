@@ -82,7 +82,7 @@ on `PATH`, and Node 20 or newer. The testnet steps also need
 | --- | --- |
 | Open [the practice coin](https://rosc-eight.vercel.app/?coin=testnet-practice#code) and press *Scrub in as a guest* | A coin in arrest that you bring back from the keyboard in under a minute. Nothing to install, no wallet. |
 | `make demo` | A whole life on testnet in about ten minutes, with a link for every transaction. Expected output is [below](#make-demo). |
-| `make test` | 50 rulebook and simulator tests, then 8 contract tests on a local sandbox chain, all passing. |
+| `make test` | 50 rulebook and simulator tests, then 8 contract tests on a local sandbox chain, all passing. One of them, [`properties.rs`](crates/codeblue-core/tests/properties.rs), makes 1,288,000 random calls from 322 seeds, under four sets of launch parameters, and checks after every call that supply never grows, the books balance, a refused call changed nothing and the code's invariants hold. |
 | `make sim` | Six scenarios, 1,000 runs each, written to `sim/out/` with charts in `sim/out/charts/`. Two runs give byte-identical files. |
 | `cd web && npm install && npm run dev` | The bedside monitor at `http://localhost:5173`, reading the testnet coin in `deployments/`. |
 | `cd web && npx playwright test` | The page's acceptance tests, in a real browser against testnet. |

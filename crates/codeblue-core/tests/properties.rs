@@ -231,6 +231,22 @@ fn random_calls_never_break_the_books_or_the_invariants() {
     for seed in 400..=440 {
         run(seed, revivable.clone(), 4_000, &mut seen);
     }
+    // The practice coin's launch values (deployments/testnet-practice.json):
+    // a code that waits weeks for a rescuer and ends after one cheap round.
+    let practice = Config {
+        no_flow_max_blocks: 3_000_000,
+        max_pause_blocks: 3_000_000,
+        noflow_burn_bps: 0,
+        noflow_target_cap: 0,
+        base_target: 50,
+        scar_target: 0,
+        cycles_per_round: 1,
+        max_rounds: 200,
+        ..Config::demo()
+    };
+    for seed in 500..=540 {
+        run(seed, practice.clone(), 4_000, &mut seen);
+    }
     println!("{seen:?}");
     // The run must have gone everywhere, or it proved nothing.
     assert!(seen.arrests > 500, "{seen:?}");
